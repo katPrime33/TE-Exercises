@@ -153,16 +153,17 @@ public class Lecture {
 		/*
 		24. What is 1,000,000,000 * 3?
 		*/
-
+		long billions = (long)1000000000 * 3;
+		System.out.println(billions);
 		/*
 		25. Create a variable that holds a boolean called isDoneWithExercises and
 		set it to false.
 		*/
-
+		boolean isDoneWithExercises = false;
 		/*
 		26. Now set isDoneWithExercise to true.
 		*/
-
+		isDoneWithExercises = true;
 	}
 
 }

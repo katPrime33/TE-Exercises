@@ -160,7 +160,18 @@ public class Exercises {
 	 sum28([1, 2, 3, 4]) → false
 	 */
 	public boolean sum28(int[] nums) {
-		return false;
+		//have nums[]
+		int sumOfTwos = 0;
+		//first find all the 2's <- loop over nums[] look at each element
+		for(int i = 0; i < nums.length;i++){
+			//if current element is a 2, keep track in a variable? like a counter or sum
+			if(nums[i] == 2){
+				sumOfTwos = nums[i];
+			}
+		}
+
+		//return true if tracking variable == 8
+		return sumOfTwos == 8;
 	}
 
 }

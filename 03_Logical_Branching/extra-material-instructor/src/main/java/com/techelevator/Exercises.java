@@ -178,6 +178,15 @@ public class Exercises {
 	 cigarParty(70, true) → true
 	 */
 	public boolean cigarParty(int cigars, boolean isWeekend) {
+		//cigars is between 40 and 60
+		if(cigars >= 40 && cigars <= 60){
+			return true;
+		}
+		if(isWeekend == true){
+			if(cigars > 40){
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -229,7 +238,22 @@ public class Exercises {
      yourCakeAndEatItToo(11.00, false) → "special"
      */
     public String yourCakeAndEatItToo(double mealAmount, boolean isBirthday) {
-        return "";
+		//if isBirthday add $5 to mealAmount
+		if(isBirthday == true){
+			mealAmount = mealAmount + 5;
+		}
+		// if mealAmount <= $10 return (standard),
+		if(mealAmount <= 10){
+			return "standard";
+		} else if (mealAmount <= 15){
+			return "special";
+		} else {
+			return "ginormous";
+		}
+		//if mealAmount <= $15 return (special)
+
+		// if mealAmount  > $15 return (ginormous)
+
     }
 
 	/*
@@ -343,7 +367,15 @@ public class Exercises {
 	 answerCell(true, false, false) → false
 	 */
 	public boolean answerCell(boolean isMorning, boolean isMom, boolean isAsleep) {
-		return false;
+		// if you are asleep, you do not answer
+		if(isAsleep){
+			return false;
+		}
+		//if in the morning, only answer if mom
+		if(isMorning == true){
+			return isMom == true;
+		}
+		return true;
 	}
 
 	/*

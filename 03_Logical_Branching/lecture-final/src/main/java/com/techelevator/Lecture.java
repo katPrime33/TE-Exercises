@@ -69,11 +69,11 @@ public class Lecture {
     */
     public boolean returnTrueWhenGreaterThanFive(int number) {
         if (number > 5) {
-
+            return true;
         } else {
-
+            return false;
         }
-        return false;
+
     }
 
     /*
@@ -91,14 +91,14 @@ public class Lecture {
     * We'll then return the result
     */
     public int returnNumberAfterAddThreeAndAddFive(int number, boolean addThree, boolean addFive) {
-        if (addThree) {
-            number = number + 1;
+        if (addThree == true) {
+            number = number + 3;
         }
 
         // We can't use an else here. They could both be true, so we have to check each one.
 
-        if (addFive) {
-            number += 1;
+        if (addFive == true) {
+            number += 5;
         }
 
         return number;
@@ -122,6 +122,11 @@ public class Lecture {
     13. Write an if/else statement that returns "Fizz" if the parameter is 3, "Buzz" if the parameter is 5 and an empty String for anything else.
     */
     public String returnFizzOrBuzzOrNothing(int number) {
+        if(number == 3){
+            return "Fizz";
+        } else if(number == 5){
+            return "Buzz";
+        }
         return "";
     }
 

@@ -131,7 +131,10 @@ public class Examples {
 		trees[1] = "Maple";
 		System.out.println(trees[1]);
 
-		int[] intArray = new int[] { 1, 2, 3 }; // this is how we declare an array literal
+		int[] intArray = new int[3]; // this is how we declare an array literal
+		intArray[0] = 3;
+		intArray[1] = 5;
+		intArray[2] = 7;
 		for (int ix = 0; ix < intArray.length; ix++) {
 			System.out.print(intArray[ix]);
 		}

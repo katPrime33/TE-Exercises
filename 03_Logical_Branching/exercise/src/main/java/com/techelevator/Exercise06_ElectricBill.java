@@ -24,8 +24,16 @@ public class Exercise06_ElectricBill {
     calculateElectricBill(110) ➔ 22.5
      */
     public double calculateElectricBill(double unitsUsed) {
-        return 0;
-    }
+        //if units used <= 100.0, return base rate * units used
+        //if units used > 100.00, return excess rate * units used
+        double excessAmount = (unitsUsed - 100.0);
+        if(unitsUsed <= 100.0){
+            return (BASE_RATE * unitsUsed);
+        } else {
+            return ((BASE_RATE * 100.0) + (EXCESS_RATE * excessAmount));
+        }
+        }
+
 
     /*
     Tech Electric realized some of their customers have renewable energy like solar panels.
@@ -39,7 +47,17 @@ public class Exercise06_ElectricBill {
     calculateElectricBill(110, true) ➔ 21.375
      */
     public double calculateElectricBill(double unitsUsed, boolean hasRenewableEnergy) {
-        return 0;
+        double totalAmount = 0;
+        double excessAmount = (unitsUsed - 100.0);
+        if(unitsUsed <= 100.0){
+            totalAmount = (BASE_RATE * unitsUsed);
+        } else {
+            totalAmount = ((BASE_RATE * 100.0) + (EXCESS_RATE * excessAmount));
+        }
+        if(hasRenewableEnergy){
+            totalAmount = (totalAmount * DISCOUNT_FACTOR);
+        }
+        return totalAmount;
     }
 
     /*

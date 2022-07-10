@@ -10,6 +10,8 @@ public class Exercises {
 	 firstLast6([13, 6, 1, 2, 3]) → false
 	 */
 	public boolean firstLast6(int[] nums) {
+		int firstOrLast = 6;
+		for(int i = 0; i = 6; i++)
 		return false;
 	}
 
@@ -116,7 +118,14 @@ public class Exercises {
 	 countEvens([1, 3, 5]) → 0
 	 */
 	public int countEvens(int[] nums) {
-		return 0;
+		int countOfEvens = 0;
+		for(int i = 0; i < nums.length; i++){
+			if(nums[i]	% 2 == 0) {
+				countOfEvens = countOfEvens + 1;
+			}
+		}
+
+		return countOfEvens;
 	}
 
 	/*

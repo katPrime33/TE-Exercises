@@ -7,7 +7,7 @@ public class Lecture {
     */
     public int[] returnArray() {
         int[] array = { 80, 8080, 443 };
-        return null;
+        return array;
     }
 
     /*
@@ -15,7 +15,7 @@ public class Lecture {
     */
     public int returnFirstElement() {
         int[] portNumbers = { 80, 8080, 443 };
-        return 1;
+        return portNumbers[0];
     }
 
     /*
@@ -23,21 +23,22 @@ public class Lecture {
     */
     public int returnLastElement() {
         int[] portNumbers = { 80, 8080, 443 };
-        return 1;
+        int lastIndex = portNumbers.length - 1;
+        return portNumbers[lastIndex];
     }
 
     /*
     4. Return the first element of the array from the parameters
     */
     public int returnFirstElementOfParam(int[] passedInArray) {
-        return 1;
+        return passedInArray[0];
     }
 
     /*
     5. Return the last element of the array from the parameters
     */
     public int returnLastElementOfParam(int[] passedInArray) {
-        return 1;
+        return passedInArray[passedInArray.length - 1];
     }
 
     /*
@@ -67,7 +68,7 @@ public class Lecture {
             result *= multiplier;
         }
 
-        return result == 1; // <-- Change the number to match result and make this be true
+        return result == 50; // <-- Change the number to match result and make this be true
     }
 
     /*
@@ -88,7 +89,7 @@ public class Lecture {
             double eight = five + three;
         }
 
-        return 0;
+        return one;
     }
 
     /*
@@ -96,7 +97,7 @@ public class Lecture {
     */
     public boolean returnCounterFromLoop() {
 
-        int[] arrayToLoopThrough = { 3, 4, 2, 9 };
+        int[] arrayToLoopThrough = { 3, 4, 2, 9 }; //length is 4
 
         int counter = 0; // Must be started outside the block so that have access to it after the block
 
@@ -104,7 +105,7 @@ public class Lecture {
             counter++;
         }
 
-        return counter == 1; // What should the number be to return true?
+        return counter == 4; // What should the number be to return true?
     }
 
     /*
@@ -116,7 +117,7 @@ public class Lecture {
         int counter = 0;
 
         //     Start;       Keep going while         Increment by one;
-        for (int i = 1; i < arrayToLoopThrough.length; i++) {
+        for (int i = 1; i <= arrayToLoopThrough.length; i++) {
             counter += 1;
         }
 
@@ -127,13 +128,13 @@ public class Lecture {
     11. This loop is counting incorrectly. What needs to change in the loop for it to count properly?
     */
     public boolean returnCountCorrectTimes() {
-        int[] arrayToLoopThrough = { 4, 23, 9, 4, 33 };
+        int[] arrayToLoopThrough = { 4, 23, 9, 4, 33 }; //length is 5
 
         int counter = 0;
 
         //     Start;       Keep going while         Increment by one;
-        for (int i = 0; i <= arrayToLoopThrough.length; i++) {
-            counter = counter + 1;
+        for (int i = 1; i <= arrayToLoopThrough.length; i++) {
+            counter += 1;
         }
 
         return counter == 5;

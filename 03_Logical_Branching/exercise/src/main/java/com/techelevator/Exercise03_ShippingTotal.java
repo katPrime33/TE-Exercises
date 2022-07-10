@@ -11,6 +11,7 @@ public class Exercise03_ShippingTotal {
     private final int MAX_WEIGHT_POUNDS = 40;
     private final double UP_TO_40_LB_RATE = 0.50;
     private final double OVER_40_LB_RATE = 0.75;
+    private final double DISCOUNT_RATE = .90;
 
     /*
     Scamper Shipping Company charges $0.50 per pound up to 40 pounds. After that, it's $0.75 for each additional pound.
@@ -21,8 +22,18 @@ public class Exercise03_ShippingTotal {
     calculateShippingTotal(25) ➔ 12.5
     calculateShippingTotal(45) ➔ 23.75
      */
+
+    //private final int MAX_WEIGHT_POUNDS = 40
+    //private final double UP_TO_40_LB_RATE = 0.50
+    //private final double OVER_40_LB_RATE = 0.75
+
     public double calculateShippingTotal(int weightPounds) {
-        return 0;
+        int excessWeight = (weightPounds - 40);
+        if (weightPounds <= 40){
+            return (UP_TO_40_LB_RATE * weightPounds);
+        } else{
+            return ((UP_TO_40_LB_RATE * MAX_WEIGHT_POUNDS) + (OVER_40_LB_RATE * excessWeight));
+        }
     }
 
     /*
@@ -38,7 +49,17 @@ public class Exercise03_ShippingTotal {
     calculateShippingTotal(45, true) ➔ 21.375
      */
     public double calculateShippingTotal(int weightPounds, boolean hasDiscount) {
-        return 0;
+        double totalAmount = 0;
+        int excessWeight = (weightPounds - 40);
+        if (weightPounds <= 40) {
+           totalAmount = (UP_TO_40_LB_RATE * weightPounds);
+        } else {
+            totalAmount = ((UP_TO_40_LB_RATE * MAX_WEIGHT_POUNDS) + (OVER_40_LB_RATE * excessWeight));
+        }
+        if(hasDiscount){
+            totalAmount = (totalAmount * DISCOUNT_RATE);
+        }
+        return totalAmount;
     }
 
     /*

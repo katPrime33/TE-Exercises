@@ -34,7 +34,7 @@ class DiscountCalculator {
             System.out.println(Double.parseDouble(pricesArray[i]) - amountToRemove);
         }
 
-        
+
 //        String userEnteredMeasurementScale = scanner.nextLine();
 //
 //        if(userEnteredMeasurementScale.equals("C")){

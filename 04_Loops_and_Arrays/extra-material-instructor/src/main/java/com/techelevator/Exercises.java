@@ -140,6 +140,14 @@ public class Exercises {
 	 has22([2, 1, 2]) → false
 	 */
 	public boolean has22(int[] nums) {
+		//need to inspect each element in the array and see if it and the next element equal 2
+		//pattern is to check if nums[currentIndex] == 2 and nums[currentIndex +1] == 2
+		for(int i = 0; i < nums.length -1; i++){
+			if(nums[i] == 2 && nums[i +1] == 2){
+				return true;
+			}
+		}
+
 		return false;
 	}
 	

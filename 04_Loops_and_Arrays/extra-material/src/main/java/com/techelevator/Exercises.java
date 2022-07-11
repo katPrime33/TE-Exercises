@@ -10,9 +10,8 @@ public class Exercises {
 	 firstLast6([13, 6, 1, 2, 3]) → false
 	 */
 	public boolean firstLast6(int[] nums) {
-		int firstOrLast = 6;
-		for(int i = 0; i = 6; i++)
-		return false;
+
+		return true;
 	}
 
 	/*
@@ -149,6 +148,15 @@ public class Exercises {
 	 has22([2, 1, 2]) → false
 	 */
 	public boolean has22(int[] nums) {
+		//given nums[]  - contains ints
+		//look at each int in nums[] find out if it is a 2 AND if the int next to it is a 2
+		//loop over nums[]
+		for(int i = 0; i < nums.length - 1; i++){
+			if(nums[i] == 2 && nums[i + 1] == 2){
+				//because i am not keeping a count of how many double 2's I find, I can return and get out of here
+				return true;
+			}
+		}
 		return false;
 	}
 	

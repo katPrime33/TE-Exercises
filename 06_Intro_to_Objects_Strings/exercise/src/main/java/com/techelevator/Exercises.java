@@ -9,6 +9,7 @@ public class Exercises {
 	 helloName("X") → "Hello X!"
 	 */
 	public String helloName(String name) {
+
 		return null;
 	}
 
@@ -20,6 +21,7 @@ public class Exercises {
 	 makeAbba("What", "Up") → "WhatUpUpWhat"
 	 */
 	public String makeAbba(String a, String b) {
+
 		return null;
 	}
 
@@ -32,6 +34,7 @@ public class Exercises {
 	 makeTags("cite", "Yay") → "<cite>Yay</cite>"
 	 */
 	public String makeTags(String tag, String word) {
+
 		return null;
 	}
 
@@ -44,7 +47,10 @@ public class Exercises {
 	 makeOutWord("[[]]", "word") → "[[word]]"
 	 */
 	public String makeOutWord(String out, String word) {
-		return null;
+		String start = out.substring(0 ,2);
+		String end = out.substring(2);
+		//System.out.println(start + word + end);
+		return start + word + end;
 	}
 
 	/*
@@ -55,7 +61,10 @@ public class Exercises {
 	 extraEnd("Hi") → "HiHiHi"
 	 */
 	public String extraEnd(String str) {
-		return null;
+		int indexOfLastTwoChar = str.length()-2;
+		String end = str.substring(indexOfLastTwoChar);
+		//System.out.println(end + end + end);
+		return end + end + end;
 	}
 
 	/*
@@ -67,6 +76,7 @@ public class Exercises {
 	 firstTwo("ab") → "ab"
 	 */
 	public String firstTwo(String str) {
+
 		return null;
 	}
 
@@ -315,7 +325,16 @@ public class Exercises {
 	 altPairs("CodingHorror") → "Congrr"
 	 */
 	public String altPairs(String str) {
-		return null;
+		String newStr = "";
+		for(int i = 0; i < str.length(); i = i + 4) {
+			newStr = newStr + str.charAt(i);
+			if(i + 1 < str.length()){
+				newStr = newStr + str.charAt(i + 1);
+			}
+
+		}
+
+		return newStr;
 	}
 
 	/*

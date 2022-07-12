@@ -26,7 +26,7 @@ public class MakeChange {
 		System.out.println("Please enter amount tendered: ");
 
 		String billAmountFromUser = scanner.nextLine();
-		String[] 
+		//String[]
 
 		System.out.println("Your change due is: ");
 

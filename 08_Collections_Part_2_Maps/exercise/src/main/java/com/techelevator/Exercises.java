@@ -1,5 +1,6 @@
 package com.techelevator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,7 +35,25 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-		return null;
+		//this method is in charge of the existence of the map and its key
+		//start by building map with values provided above
+		//is String animalName in map?
+		int name = 0;
+		Map<String, String> animalNamesMap = new HashMap<String, String>();
+		animalNamesMap.put("rhino", "crash");
+		animalNamesMap.put("giraffe", "tower");
+		animalNamesMap.put("elephant", "herd");
+		animalNamesMap.put("lion", "pride");
+		animalNamesMap.put("crow", "murder");
+		animalNamesMap.put("pigeon", "kit");
+		animalNamesMap.put("flamingo", "pat");
+		animalNamesMap.put("deer", "herd");
+		animalNamesMap.put("dog", "pack");
+		animalNamesMap.put("crocodile", "float");
+
+			//for()
+
+		return animalName;
 	}
 
 	/*
@@ -60,6 +79,7 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
+		//build map with values provided above
 		return -1.0;
 	}
 
@@ -74,6 +94,10 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
+		//set up variable to account for half of Peters money
+		//map already provided
+		//modify and return given map
+		int halfOfPeter = peterPaul.get("Peter") / 2;
 		return null;
 	}
 
@@ -87,6 +111,8 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
+		//map provided
+		//modify and return given map
 		return null;
 	}
 
@@ -99,6 +125,7 @@ public class Exercises {
 	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
+		//make a map from values provided in Array
 		return null;
 	}
 
@@ -115,7 +142,13 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> wordCount(String[] words) {
-		return null;
+		//convert array into map<string, integer>
+		//
+		Map<String, Integer> wordCounting = new HashMap<>();
+		for(String tempWordFromArray : words){
+
+		}
+		return wordCounting;
 	}
 
 	/*
@@ -143,6 +176,7 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Boolean> wordMultiple(String[] words) {
+		//create map with values given in Array
 		return null;
 	}
 
@@ -158,6 +192,8 @@ public class Exercises {
 	 */
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse) {
+		//working with two maps
+		//consolidate and return new map with combined values
 		return null;
 	}
 
@@ -176,8 +212,26 @@ public class Exercises {
 	 * last2Revisited(["hixxhi", "xaxxaxaxx", "axxxaaxx"]) → {"hixxhi": 1, "xaxxaxaxx": 1, "axxxaaxx": 2}
 	 *
 	 */
-	public Map<String, Integer> last2Revisited(String[] words) {
-		return null;
+	public Map<String, Integer> last2Revisited(String[] words){
+		Map<String, Integer> endCounts = new HashMap<>();
+		for(String tempWordFromArray : words){
+			//keep track of last two char in string
+			String end = tempWordFromArray.substring(tempWordFromArray.length()-2);
+			//need to compare end string with portions of current string
+			//tempWordFromArray.substring(0,2).equals(end);
+			//tempWordFromArray.substring(1,3).equals(end);
+			//because i do not want to compare the last 2 chars stop looping at length -2
+			int endCount = 0;
+			for(int i = 0; i < tempWordFromArray.length() - 2; i++){
+				if(tempWordFromArray.substring(i,i+2).equals(end)){
+					//do something because we found a match
+					endCount++;
+				}
+			}
+			//we know that endCount after looping over the entire word, now update map
+			endCounts.put(tempWordFromArray, endCount);
+		}
+		return endCounts;
 	}
 
 }

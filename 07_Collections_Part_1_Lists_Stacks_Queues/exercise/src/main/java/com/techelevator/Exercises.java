@@ -86,6 +86,8 @@ public class Exercises {
 	public Integer findLargest(List<Integer> integerList) {
 		//instantiate a new list
 		List<Integer> listOfIntegers = Arrays.asList();
+		//loop through array to find largest value
+
 		//return largest value
 		int value = 0;
 
@@ -121,12 +123,17 @@ public class Exercises {
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
 		int count = 0;
 		//instantiate a new list
-		List<Integer> appearsTwoOrMoreTimes = new ArrayList<>();
+		List<Integer> intFoundTwice = new ArrayList<>();
 		//true if int value appears two or more times in the list
-		for (Integer intAppearsTwiceOrMore : integerList) {
-			if (intToFind == intAppearsTwiceOrMore) {
-				count += count;
+		int arrayList = 0;
+		for(Integer findTwice: integerList){
+			if(intToFind == findTwice){
+				count = count +1;
 			}
+
+			}
+		if(count == 2){
+			return true;
 		}
 		return false;
 	}
@@ -174,10 +181,20 @@ public class Exercises {
 	 list to the new list before returning it.
 	 interleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
 	 */
-		public List<Integer> interleaveLists (List < Integer > listOne, List < Integer > listTwo){
+		public List<Integer> interleaveLists (List < Integer > listOne, List < Integer > listTwo) {
 			//instantiate new list
-			List<Integer> interLeave = new ArrayList<>();
-			//
+		//	List<Integer> interLeave = new ArrayList<>();
+			//create a variable
+			//int i = 1;  //for listOne
+		//	int j = 0;  //for listTwo
+
+			//while(j <listTwo.size()) {
+			//	if (i < listOne.size()) {
+			//		listOne.add(i, listTwo.get(j));
+			//		i += 2;
+
+
+
 			return null;
 		}
 	}

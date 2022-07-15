@@ -39,9 +39,6 @@ Create a new class called `Employee.java` with the following requirements.
 | department | Department | x | x |
 | hireDate | String | x | x |
 
-#### Static constants
-
-The default starting salary for all employees is $60,000 and is stored in a static constant variable of type `double`.
 
 #### Constructors
 
@@ -49,7 +46,7 @@ The default starting salary for all employees is $60,000 and is stored in a stat
 
 The first one accepts all the arguments needed to create a new `Employee`: `employeeID`, `firstName`, `lastName`, `email`, `department`, and `hireDate`.
 
-> Note: The first constructor doesn't include a `double` argument for the salary. Make sure to initialize each employees' salary to the static constant you created.
+> Note: The first constructor doesn't include a `double` argument for the salary. Make sure to initialize each employees' salary to 60000.00.
 
 The second constructor is a no-argument constructor. This constructor allows you to create your `Employee` objects in multiple ways.
 

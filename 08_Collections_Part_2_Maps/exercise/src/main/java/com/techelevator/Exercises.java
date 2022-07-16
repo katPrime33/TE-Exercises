@@ -3,6 +3,7 @@ package com.techelevator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Exercises {
 
@@ -38,22 +39,32 @@ public class Exercises {
 		//this method is in charge of the existence of the map and its key
 		//start by building map with values provided above
 		//is String animalName in map?
-		int name = 0;
-		Map<String, String> animalNamesMap = new HashMap<String, String>();
-		animalNamesMap.put("rhino", "crash");
-		animalNamesMap.put("giraffe", "tower");
-		animalNamesMap.put("elephant", "herd");
-		animalNamesMap.put("lion", "pride");
-		animalNamesMap.put("crow", "murder");
-		animalNamesMap.put("pigeon", "kit");
-		animalNamesMap.put("flamingo", "pat");
-		animalNamesMap.put("deer", "herd");
-		animalNamesMap.put("dog", "pack");
-		animalNamesMap.put("crocodile", "float");
 
-			//for()
 
-		return animalName;
+		Map<String, String> animalGroupNames = new HashMap<>();
+		
+		animalGroupNames.put("rhino", "Crash");
+		animalGroupNames.put("giraffe", "Tower");
+		animalGroupNames.put("elephant", "Herd");
+		animalGroupNames.put("lion", "Pride");
+		animalGroupNames.put("crow", "Murder");
+		animalGroupNames.put("pigeon", "Kit");
+		animalGroupNames.put("flamingo", "Pat");
+		animalGroupNames.put("deer", "Herd");
+		animalGroupNames.put("dog", "Pack");
+		animalGroupNames.put("crocodile", "Float");
+
+		if(animalName == null){
+			return "unknown";
+		}
+		animalName = animalName.toLowerCase();
+		if(animalGroupNames.get(animalName) != null){
+			return animalGroupNames.get(animalName);
+		} else{
+
+		}
+
+		return "unknown";
 	}
 
 	/*
@@ -80,8 +91,27 @@ public class Exercises {
 	 */
 	public double isItOnSale(String itemNumber) {
 		//build map with values provided above
-		return -1.0;
+
+
+		Map<String, Double> isThisOnSale = new HashMap<>();
+
+		isThisOnSale.put("KITCHEN4001", 0.20);
+		isThisOnSale.put("GARAGE1070", 0.15);
+		isThisOnSale.put("LIVINGROOM", 0.10);
+		isThisOnSale.put("KITCHEN6073", 0.40);
+		isThisOnSale.put("BEDROOM3434", 0.60);
+		isThisOnSale.put("BATH0073", 0.15);
+
+		if(itemNumber == null){
+			return 0.0;
+		}
+		itemNumber = itemNumber.toUpperCase();
+		if(isThisOnSale.containsKey(itemNumber)){
+			return isThisOnSale.get(itemNumber);
+		}
+		return 0.0;
 	}
+
 
 	/*
 	 * Modify and return the given Map as follows: if "Peter" has more than 0 money, transfer half of it to "Paul",
@@ -95,10 +125,15 @@ public class Exercises {
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
 		//set up variable to account for half of Peters money
+		//if peter has > 0 money and paul has more < 1000
 		//map already provided
 		//modify and return given map
 		int halfOfPeter = peterPaul.get("Peter") / 2;
-		return null;
+		if(peterPaul.get("Peter") > 0 && peterPaul.get("Paul") < 1000){
+			peterPaul.put("Peter", peterPaul.get("Peter") - halfOfPeter);
+			peterPaul.put("Paul", peterPaul.get("Paul") + halfOfPeter);
+		}
+		return peterPaul;
 	}
 
 	/*
@@ -113,7 +148,15 @@ public class Exercises {
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
 		//map provided
 		//modify and return given map
-		return null;
+		Integer petersMoney = peterPaul.get("Peter");
+		Integer paulsMoney = peterPaul.get("Paul");
+
+		if(paulsMoney >= 10000 && petersMoney >= 5000){
+			Integer paulsPartnershipAmount = (paulsMoney/4);
+			Integer petersPartnershipAmount = (petersMoney/4);
+			peterPaul.put("peterPaulPartnership", paulsPartnershipAmount + petersPartnershipAmount);
+		}
+		return peterPaul;
 	}
 
 	/*
@@ -125,8 +168,12 @@ public class Exercises {
 	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
-		//make a map from values provided in Array
-		return null;
+		Map<String, String> myMap = new HashMap<>();
+		for(String s: words){
+			myMap.put(s.charAt(0) + "", s.charAt(s.length() - 1) + "");
+		}
+
+		return myMap;
 	}
 
 	/*
@@ -163,7 +210,16 @@ public class Exercises {
 	 *
 	 */
 	public Map<Integer, Integer> integerCount(int[] ints) {
-		return null;
+		Map<Integer, Integer> keyEveryInt = new HashMap<>();
+		for(Integer elements : ints){
+			if(!keyEveryInt.containsKey(elements)){
+				keyEveryInt.put(elements, 1);
+			}else{
+				int count = keyEveryInt.get(elements);
+				keyEveryInt.put(elements, count + 1);
+			}
+		}
+		return keyEveryInt;
 	}
 
 	/*
@@ -177,7 +233,25 @@ public class Exercises {
 	 */
 	public Map<String, Boolean> wordMultiple(String[] words) {
 		//create map with values given in Array
-		return null;
+		Map<String, Boolean> booleanMap = new HashMap<>();
+			Map<String, Integer> integerMap = new HashMap<>();
+				for(
+				String buffer : words)
+
+				{
+					if (booleanMap.containsKey(buffer) && booleanMap.get(buffer)) {
+						continue;
+					}
+					if (integerMap.containsKey(buffer)) {
+						integerMap.put(buffer, integerMap.get(buffer) + 1);
+					} else {
+						integerMap.put(buffer, 1);
+					}
+					booleanMap.put(buffer, integerMap.get(buffer) >= 2);
+		}
+
+
+		return booleanMap;
 	}
 
 	/*
@@ -194,7 +268,21 @@ public class Exercises {
 			Map<String, Integer> remoteWarehouse) {
 		//working with two maps
 		//consolidate and return new map with combined values
-		return null;
+			Map<String, Integer> newConsolidatedMap = new HashMap<String, Integer>();
+			for(String name : mainWarehouse.keySet()){
+				if(remoteWarehouse.containsKey(name)){
+					newConsolidatedMap.put(name, (mainWarehouse.get(name)));
+				} else{
+					newConsolidatedMap.put(name, mainWarehouse.get(name));
+				}
+			}
+			for(String name : remoteWarehouse.keySet()){
+				if(!(mainWarehouse.containsKey(name))){
+					newConsolidatedMap.put(name, remoteWarehouse.get(name));
+				}
+			}
+
+		return newConsolidatedMap;
 	}
 
 	/*

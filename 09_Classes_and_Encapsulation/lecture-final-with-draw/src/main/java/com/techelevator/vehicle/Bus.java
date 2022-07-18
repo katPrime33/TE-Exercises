@@ -5,7 +5,7 @@ public class Bus {
 
      private int numOfPassengers;
      private boolean isDoorOpen = false;
-     private int gallonsOfGas;
+     private int gallonsOfGas = 40;
      private String routeName;
 
      private static final int NUMBER_OF_SEATS = 40;

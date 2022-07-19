@@ -28,5 +28,11 @@ public class Application {
         reserveAuction.placeBid(new Bid("Nife", 10));
         reserveAuction.placeBid(new Bid("Nate", 81));
         System.out.println("The winner of the reserve auction is: " + reserveAuction.getHighBid().getBidder());
+
+        BuyoutAuction buyoutAuction = new BuyoutAuction("Cat-ption genernator", 20);
+        buyoutAuction.placeBid(new Bid("Kat", 18));
+        buyoutAuction.placeBid(new Bid("James", 1000));
+        buyoutAuction.placeBid(new Bid("Rachelle", 1000));
+        System.out.println("The winner of the buyout auction is: " + buyoutAuction.getHighBid().getBidder() + " with a bid of: " + buyoutAuction.getHighBid().getBidAmount());
     }
 }

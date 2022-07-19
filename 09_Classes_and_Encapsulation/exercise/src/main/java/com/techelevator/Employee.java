@@ -26,16 +26,15 @@ public class Employee {
 
 
     //methods
-    public double raiseSalary(double percent) {
+    public void raiseSalary(double percent) {
         this.annualSalary += ((this.annualSalary * percent) / 100);
-        return annualSalary;
     }
 
 
 
     //getters and setters
     public void setLastName() {
-        this.lastName = lastName;
+         this.lastName = lastName;
     }
     public void setDepartment(){
         this.department = department;

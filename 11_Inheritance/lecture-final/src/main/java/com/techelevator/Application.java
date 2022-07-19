@@ -1,5 +1,8 @@
 package com.techelevator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -34,5 +37,16 @@ public class Application {
         buyoutAuction.placeBid(new Bid("James", 1000));
         buyoutAuction.placeBid(new Bid("Rachelle", 1000));
         System.out.println("The winner of the buyout auction is: " + buyoutAuction.getHighBid().getBidder() + " with a bid of: " + buyoutAuction.getHighBid().getBidAmount());
+
+        List<Auction> auctionList = new ArrayList<Auction>();
+        auctionList.add(generalAuction);
+        auctionList.add(reserveAuction);
+        auctionList.add(buyoutAuction);
+
+        System.out.println("Polymorphism example looping over a list of Auctions and getting specific response from each auction type.");
+        for(Auction currentAuction : auctionList){
+            currentAuction.placeBid(new Bid("GenericBid", 100));
+            System.out.println(currentAuction.getHighBid().getBidder() + " was the highest bidder with a bid of: " + currentAuction.getHighBid().getBidAmount());
+        }
     }
 }

@@ -52,6 +52,16 @@ public class Bus {
           this.gallonsOfGas += gallonsOfGas;
      }
 
+     //overload addGas()
+     public void addGas(int gallonsOfGas, int milesTraveled){
+          //do something
+     }
+
+     public void addGas(int gallonsOfGas, boolean areYouHappy){
+          //do something
+     }
+
+
      public void openDoor(){
           //maybe we would have some qualifiers before we try to open the door
           //like bus is stopped

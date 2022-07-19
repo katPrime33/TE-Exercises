@@ -3,9 +3,9 @@ package com.techelevator.farm;
 public class OldMacdonald {
 	public static void main(String[] args) {
 
-		FarmAnimal[] farmAnimals = new FarmAnimal[] { new Cow(), new Chicken() };
+		Singable[] singables = new Singable[] { new Cow(), new Chicken(), new Pig(), new Tractor() };
 
-		for (FarmAnimal animal : farmAnimals) {
+		for (Singable animal : singables) {
 			String name = animal.getName();
 			String sound = animal.getSound();
 			System.out.println("Old MacDonald had a farm, ee, ay, ee, ay, oh!");
@@ -15,5 +15,17 @@ public class OldMacdonald {
 			System.out.println("Here a " + sound + " there a " + sound + " everywhere a " + sound + " " + sound);
 			System.out.println();
 		}
+
+		Sellable[] itemsForSale = new Sellable[]{new Chicken(), new Tractor()};
+		for(Sellable item : itemsForSale){
+			System.out.println(item.getName() + " $" + item.getPrice());
+		}
+
+		FarmAnimal[] farmAnimals = new FarmAnimal[] { new Cow(), new Chicken(), new Pig()};
+
+		for(FarmAnimal animal : farmAnimals){
+			System.out.println(animal);
+		}
+
 	}
 }

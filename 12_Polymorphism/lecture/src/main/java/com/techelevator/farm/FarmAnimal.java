@@ -1,11 +1,12 @@
 package com.techelevator.farm;
 
-public class FarmAnimal {
+public class FarmAnimal implements Singable{
 	private String name;
 	private String sound;
 
 	public FarmAnimal(String name) {
 		this.name = name;
+		this.sound = sound;
 	}
 
 	public String getName() {
@@ -16,4 +17,8 @@ public class FarmAnimal {
 		return sound;
 	}
 
+	@Override
+	public String toString(){
+	return name + " and I make the sound: " + sound;
+	}
 }

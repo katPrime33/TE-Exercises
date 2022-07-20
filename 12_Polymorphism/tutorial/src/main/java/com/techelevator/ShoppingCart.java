@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class ShoppingCart{
 
-	private List<Purchasable> itemsToBuy = new ArrayList<>();
+	private List<Purchasable> itemsToBuy = new ArrayList<Purchasable>();
 
 	public void add(Purchasable itemToAdd) {
 	    itemsToBuy.add(itemToAdd);

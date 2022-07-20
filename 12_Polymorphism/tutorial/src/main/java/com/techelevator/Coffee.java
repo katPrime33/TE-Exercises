@@ -11,6 +11,13 @@ public class Coffee implements Purchasable {
     private List<String> additions = new ArrayList<>();
     private double price;
 
+
+    public Coffee (String size, String blend, String[] additions, double price){
+        this.size = size;
+        this.blend = blend;
+        this.additions.addAll(Arrays.asList(additions));
+        this.price = price;
+    }
     public String getSize() {
         return size;
     }
@@ -23,7 +30,7 @@ public class Coffee implements Purchasable {
         return blend;
     }
 
-    public void setBlend() {
+    public void setBlend(String blend) {
         this.blend = blend;
     }
 
@@ -42,14 +49,10 @@ public class Coffee implements Purchasable {
 
     @Override
     public String toString() {
-        return size + " coffee, " + blend + " (" + String.join(",", additions) +
+        return size + " coffee, " +
+                blend + " (" + String.join(",", additions) +
                 "). Price: $" + price;
     }
-    public Coffee (String size, String blend, String[] additions, double price){
-        this.size = size;
-        this.blend = blend;
-        this.additions.addAll(Arrays.asList(additions));
-        this.price = price;
-    }
+
 }
 

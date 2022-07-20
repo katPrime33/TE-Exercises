@@ -1,6 +1,6 @@
 package com.techelevator.farm;
 
-public class Chicken extends FarmAnimal {
+public class Chicken extends FarmAnimal implements Sellable {
 
 	public Chicken() {
 		super("Chicken");
@@ -15,4 +15,8 @@ public class Chicken extends FarmAnimal {
 		return "cluck!";
 	}
 
+	@Override
+	public double getPrice() {
+		return 100.00;
+	}
 }

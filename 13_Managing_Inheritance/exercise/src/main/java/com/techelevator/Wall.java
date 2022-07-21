@@ -10,4 +10,12 @@ public abstract class Wall {
     }
 
     public abstract int getArea();
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

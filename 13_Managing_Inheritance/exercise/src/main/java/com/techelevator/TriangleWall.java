@@ -11,7 +11,20 @@ public class TriangleWall extends Wall{
         this.height = height;
     }
 
+    public int getBase() {
+        return base;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    @Override
     public int getArea(){
-        return 0;
+        return (base * height) / 2;
+    }
+
+    public String toString() {
+        return String.format("%s (%dx%d) triangle", getName(), getBase(), getHeight());
     }
 }

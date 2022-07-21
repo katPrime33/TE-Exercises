@@ -2,7 +2,7 @@ package com.techelevator.farm;
 
 import java.math.BigDecimal;
 
-public class Cow extends FarmAnimal implements Sellable {
+public final class Cow extends FarmAnimal implements Sellable {
 	private BigDecimal price;
 
 	public Cow() {
@@ -12,5 +12,10 @@ public class Cow extends FarmAnimal implements Sellable {
 
 	public BigDecimal getPrice() {
 		return price;
+	}
+
+
+	public String eat(){
+		return "Eating cow food....";
 	}
 }

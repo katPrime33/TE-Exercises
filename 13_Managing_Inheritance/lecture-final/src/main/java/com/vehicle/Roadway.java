@@ -12,8 +12,8 @@ public class Roadway {
         Bike huffy = new Bike();
         Motorcycle rolly = new Motorcycle();
         Tractor pully = new Tractor("Pully");
-        rolly.speed = 30;
-
+        rolly.setSpeed(30);
+        String rollysToString = rolly.toString();
         PullysKid tuggy = new PullysKid("Tuggy");
         List<Vehicle> vehicles = new ArrayList<>();
         vehicles.add(huffy);

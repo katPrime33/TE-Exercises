@@ -38,7 +38,11 @@ public class LectureTest {
      */
     @Test
     public void assertingBooleanTrue() {
+
+        //Arrange in @Before
+        //Act
         boolean result = lecture.or35(9);
+        //Assert
         Assert.assertTrue(result);
     }
 
@@ -105,6 +109,23 @@ public class LectureTest {
         Assert.assertEquals("He", result);
     }
 
+    @Test
+    public void assert_str_length_one_returns_string(){
+        String result = lecture.firstTwo("A");
+        Assert.assertEquals("A", result);
+    }
+
+    @Test
+    public void assert_empty_str_is_returned(){
+        String result = lecture.firstTwo("");
+        Assert.assertEquals("", result);
+    }
+
+    @Test
+    public void should_return_empty_string_with_null(){
+        String result = lecture.firstTwo(null);
+        Assert.assertEquals("", result);
+    }
     /*
         Asserting Arrays
      */

@@ -56,7 +56,7 @@ public class Application {
 
         Item selectedItem = inventory.get(skuToPurchase);
 
-        System.out.println("You selected to purchase a: " + selectedItem.getName() + " at a price of: " + selectedItem.getPrice());
+        System.out.println("You selected to purchase a " + selectedItem.getName() + " at a price of: " + selectedItem.getPrice());
 
 
     }

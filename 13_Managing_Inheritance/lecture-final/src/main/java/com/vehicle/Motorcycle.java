@@ -2,7 +2,7 @@ package com.vehicle;
 
 public class Motorcycle implements Vehicle{
 
-    int speed;
+    private int speed;
 
     @Override
     public String turn(String direction) {
@@ -16,15 +16,18 @@ public class Motorcycle implements Vehicle{
     }
 
     @Override
+    public String toString() {
+        return "Motorcycle{" +
+                "speed=" + speed +
+                '}';
+    }
+
+    @Override
     public void accelerate() {
         System.out.println("twist the throttle");
         speed++;
     }
 
-    @Override
-    public String toString() {
-        return "Motorcycle [ "+ speed + " ] ";
-    }
 
     public int getSpeed() {
         return speed;

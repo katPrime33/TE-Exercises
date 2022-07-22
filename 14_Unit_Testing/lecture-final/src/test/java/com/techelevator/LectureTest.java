@@ -17,7 +17,7 @@ public class LectureTest {
 
     @Before
     public void setup() {
-        lecture = new Lecture();
+        lecture = new Lecture(100);
 
     }
     /*
@@ -38,7 +38,11 @@ public class LectureTest {
      */
     @Test
     public void assertingBooleanTrue() {
+
+        //Arrange in @Before
+        //Act
         boolean result = lecture.or35(9);
+        //Assert
         Assert.assertTrue(result);
     }
 
@@ -105,6 +109,23 @@ public class LectureTest {
         Assert.assertEquals("He", result);
     }
 
+    @Test
+    public void assert_str_length_one_returns_string(){
+        String result = lecture.firstTwo("A");
+        Assert.assertEquals("A", result);
+    }
+
+    @Test
+    public void assert_empty_str_is_returned(){
+        String result = lecture.firstTwo("");
+        Assert.assertEquals("", result);
+    }
+
+    @Test
+    public void should_return_empty_string_with_null(){
+        String result = lecture.firstTwo(null);
+        Assert.assertEquals("", result);
+    }
     /*
         Asserting Arrays
      */
@@ -168,4 +189,20 @@ public class LectureTest {
     }
 
     //objects
+    //to see comparing objects see AnimalTest
+
+    //testing a void method
+    @Test
+    public void assert_addToBalance_increases_lecture_balance(){
+        //Arrange
+        //in setup lecture has starting balance of 100
+        int amountToAdd = 10;
+        //make sure I call getBalance and assign to expected prior to adding money
+        int expectedNewBalance = lecture.getBalance() + amountToAdd;
+        //Act
+        lecture.addToBalance(amountToAdd);
+        int actualNewBalance = lecture.getBalance();
+
+        Assert.assertEquals(expectedNewBalance, actualNewBalance);
+    }
 }

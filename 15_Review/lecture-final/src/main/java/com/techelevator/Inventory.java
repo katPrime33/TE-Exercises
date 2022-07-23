@@ -1,34 +1,35 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Inventory {
 
     public Map<String, Item> getInventory() {
-        Item cake = new Item("001");
+        Food cake = new Food("001");
         cake.setName("Cake");
         cake.setDescription("A chocolate cake");
         cake.setPerishable(true);
-        cake.setPrice(10);
+        cake.setPrice(new BigDecimal("10"));
 
-        Item flipflops = new Item("002");
+        Clothing flipflops = new Clothing("002");
         flipflops.setName("Flip Flop Sandals");
         flipflops.setDescription("Protect your feet, but only the bottoms");
         flipflops.setPerishable(false);
-        flipflops.setPrice(7);
+        flipflops.setPrice(new BigDecimal("7"));
 
-        Item cat = new Item("cat01");
+        Pet cat = new Pet("cat01");
         cat.setName("Cat");
         cat.setDescription("Covered in fur");
         cat.setPerishable(true);
-        cat.setPrice(100);
+        cat.setPrice(new BigDecimal("100"));
 
-        Item frog = new Item("f22");
+        Pet frog = new Pet("f22");
         frog.setName("Frog");
         frog.setDescription("Greenish and not a toad");
         frog.setPerishable(true);
-        frog.setPrice(5.25);
+        frog.setPrice(new BigDecimal("5.25"));
 
 
         Map<String, Item> inventory = new HashMap<String, Item>();

@@ -25,6 +25,7 @@ public class ExampleOfNFE {
             //if the user enters anything that is not a number, it will throw a NumberFormatException
 
             int hoursWorked = Integer.valueOf( scan.nextLine() );
+        System.out.println("I want to see this code!!!!");
             int overtimeHours = hoursWorked - 40;
             System.out.println("You worked "+overtimeHours+" hours of overtime.");
 

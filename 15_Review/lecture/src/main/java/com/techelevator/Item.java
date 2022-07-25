@@ -1,12 +1,16 @@
 package com.techelevator;
 
-public class Item {
+import java.math.BigDecimal;
+
+public abstract class Item {
 
     private double price;
     private String name;
     private String description;
     private String sku;
     private boolean isPerishable;
+    private boolean isTaxable;
+    private BigDecimal taxToAdd;
 
     //constructor
     public Item(String sku) {
@@ -20,6 +24,15 @@ public class Item {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public BigDecimal getTaxToAdd(){
+        BigDecimal taxToAdd = new BigDecimal(getPrice() * 0.07);
+        return taxToAdd;
+    }
+
+    public void setTaxAmount(BigDecimal taxToAdd){
+        this.taxToAdd = taxToAdd;
     }
 
     public String getName() {
@@ -47,7 +60,15 @@ public class Item {
         return isPerishable;
     }
 
+    public boolean isTaxable(){
+        return isTaxable;
+    }
+
     public void setPerishable(boolean perishable) {
         isPerishable = perishable;
+    }
+
+    public void setTaxable(boolean taxable){
+        isTaxable = taxable;
     }
 }

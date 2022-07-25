@@ -6,29 +6,33 @@ import java.util.Map;
 public class Inventory {
 
     public Map<String, Item> getInventory() {
-        Item cake = new Item("001");
+        Food cake = new Food("001");
         cake.setName("Cake");
         cake.setDescription("A chocolate cake");
         cake.setPerishable(true);
         cake.setPrice(10);
+        cake.setTaxable(false);
 
-        Item flipflops = new Item("002");
+        Clothing flipflops = new Clothing("002");
         flipflops.setName("Flip Flop Sandals");
         flipflops.setDescription("Protect your feet, but only the bottoms");
         flipflops.setPerishable(false);
         flipflops.setPrice(7);
+        flipflops.setTaxable(false);
 
-        Item cat = new Item("cat01");
+        Pet cat = new Pet("cat01");
         cat.setName("Cat");
         cat.setDescription("Covered in fur");
         cat.setPerishable(true);
         cat.setPrice(100);
+        cat.setTaxable(true);
 
-        Item frog = new Item("f22");
+        Pet frog = new Pet("f22");
         frog.setName("Frog");
         frog.setDescription("Greenish and not a toad");
         frog.setPerishable(true);
         frog.setPrice(5.25);
+        frog.setTaxable(true);
 
 
         Map<String, Item> inventory = new HashMap<String, Item>();

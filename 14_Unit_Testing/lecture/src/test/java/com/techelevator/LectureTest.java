@@ -105,6 +105,23 @@ public class LectureTest {
         Assert.assertEquals("He", result);
     }
 
+    @Test
+    public void assert_string_length_one_returns_string(){
+        String result = lecture.firstTwo("A");
+        Assert.assertEquals("A", result);
+    }
+
+    @Test
+    public void assert_empty_string_is_returned(){
+        String result = lecture.firstTwo("");
+        Assert.assertEquals("", result);
+    }
+
+    @Test
+    public void should_return_empty_string_with_null(){
+        String result = lecture.firstTwo(null);
+        Assert.assertEquals("", result);
+    }
     /*
         Asserting Arrays
      */

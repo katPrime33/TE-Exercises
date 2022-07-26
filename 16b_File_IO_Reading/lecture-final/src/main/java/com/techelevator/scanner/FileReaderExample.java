@@ -26,6 +26,8 @@ public class FileReaderExample {
             }
         } catch (FileNotFoundException ex){
             System.out.println("File " + file.getAbsolutePath() + " was not found.");
+        }finally {
+            System.out.println("We had an idea for something here");
         }
     }
 }

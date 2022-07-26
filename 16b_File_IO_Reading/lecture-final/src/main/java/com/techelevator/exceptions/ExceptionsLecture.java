@@ -6,7 +6,31 @@ public class ExceptionsLecture {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		
+
+
+		String str = "abc";
+		try{
+			String upperCaseString = str.toUpperCase();
+			int num = Integer.parseInt("abc");
+			int[] nums = new int[2];
+			nums[1] = 4;
+		} catch(NumberFormatException ex){
+			ex = new NumberFormatException("Number format exception was thrown");
+			System.out.println(ex.getMessage());
+		} catch (NullPointerException ex){
+			ex = new NullPointerException("Null pointer exception was thrown");
+			System.out.println(ex.getMessage());
+		} catch (ArrayIndexOutOfBoundsException ex){
+			ex = new ArrayIndexOutOfBoundsException("An element out of bounds was attempted and error was thrown");
+			System.out.println(ex.getMessage());
+		}
+		catch(Exception ex){
+			System.out.println("an exception was thrown");
+		} finally {
+			System.out.println("Are we still talking about exceptions??");
+		}
+
+
 		/* By default, when an Exception is thrown, it will "bubble up" through the call stack until
 		 * it reaches the main method and then will cause the program to exit and print a stacktrace
 		 * to the standard output 
@@ -40,6 +64,8 @@ public class ExceptionsLecture {
 		}
 		
 		System.out.println();
+		System.out.println("--------------------------------------------------------------");
+		System.out.println("****************************************************************");
 		
 		/* catch statements can take advantage of polymorphism. The catch block will handle any Exception that 
 		 * matches the declared Exception type, including subclasses of the declared type */
@@ -52,7 +78,7 @@ public class ExceptionsLecture {
 		} catch(Exception e) { // If a NumberFormatException is thrown by Integer.valueOf(...) it will be caught here since NumberFormatException "is-a" Exception
 			System.out.println("You did it wrong...");
 		}
-		System.out.println();
+		System.out.println(" This is printing after NumberFormatException was thrown and caught");
 				
 		/* we can throw our own Exceptions in response to exceptional cases 
 		 * see the source code of calculateHotelRoomCharges for an example */
@@ -76,7 +102,8 @@ public class ExceptionsLecture {
 			double newBalance = withdraw(currentBalance, amountToWithdraw);
 			System.out.println("new balance is "+newBalance);
 		} catch(OverdraftException e) {
-			System.out.println("Unfortunately, you can't withdraw more money than you have in the bank...");
+			System.out.println("Printing OverdraftException message:");
+			System.out.println(e.getMessage());
 			System.out.println("The requested amount would overdraw the account by "+e.getOverdraftAmount());
 		}
 		System.out.println();
@@ -95,12 +122,13 @@ public class ExceptionsLecture {
 			e.printStackTrace(); // will print the Exception stacktrace to the terminal
 		}
 		System.out.println();
+		System.out.println("Printing anyway");
 	}
 	
 	/* this method does not need to declare that it throws an IllegalArgumentException because
 	 * it is a subclass of RuntimeException.  These are known as "unchecked exceptions" because
 	 * the compiler does not force us to catch them. */
-	private static double calculateHotelRoomCharges(int nights, int numberOfGuests) {
+	private static double calculateHotelRoomCharges(int nights, int numberOfGuests){
 		final double EXTRA_GUEST_CHARGE = 20;
 		final double ROOM_RATE = 85;
 		

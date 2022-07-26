@@ -11,7 +11,7 @@ public class ExceptionsLecture {
 		String str = "abc";
 		try{
 			String upperCaseString = str.toUpperCase();
-			int num = Integer.parseInt("abc");
+			int num = Integer.parseInt("1");
 			int[] nums = new int[2];
 			nums[1] = 4;
 		} catch(NumberFormatException ex){
@@ -30,6 +30,9 @@ public class ExceptionsLecture {
 			System.out.println("Are we still talking about exceptions??");
 		}
 
+		System.out.println();
+		System.out.println("******************************************");
+		System.out.println();
 
 		/* By default, when an Exception is thrown, it will "bubble up" through the call stack until
 		 * it reaches the main method and then will cause the program to exit and print a stacktrace

@@ -5,40 +5,49 @@ import com.techelevator.models.inventory.Food;
 import com.techelevator.models.inventory.Homegood;
 import com.techelevator.models.inventory.Item;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class InventoryBuilder {
 
+
     public Map<String, Item> getInventory() {
-        Food cake = new Food("001");
-        cake.setName("Cake");
-        cake.setDescription("A chocolate cake");
-        cake.setPrice(new BigDecimal("10"));
 
-        Clothing flipflops = new Clothing("002");
-        flipflops.setName("Flip Flop Sandals");
-        flipflops.setDescription("Protect your feet, but only the bottoms");
-        flipflops.setPrice(new BigDecimal("7"));
-
-        Homegood catClock = new Homegood("cat01");
-        catClock.setName("Cat O'Clock");
-        catClock.setDescription("Covered in fur");
-        catClock.setPrice(new BigDecimal("100"));
-
-        Homegood frogMug = new Homegood("f22");
-        frogMug.setName("Frog Mug");
-        frogMug.setDescription("Greenish and not a toad");
-        frogMug.setPrice(new BigDecimal("5.25"));
 
 
         Map<String, Item> inventory = new HashMap<String, Item>();
 
-        inventory.put(cake.getSku(), cake);
-        inventory.put(flipflops.getSku(), flipflops);
-        inventory.put(catClock.getSku(), catClock);
-        inventory.put(frogMug.getSku(), frogMug);
+        File fileToRead = new File("inventory.csv");
+
+        try(Scanner fileScanner = new Scanner(fileToRead)){
+            while(fileScanner.hasNextLine()){
+                String line = fileScanner.nextLine();
+               String[] newInventory = line.split("\\|");
+               Item item;
+               if(newInventory[4].equals("F")){
+                   item = new Food(newInventory[0]);
+               } else if(newInventory[4].equals("C")){
+               item = new Clothing(newInventory[0]);
+               } else {
+                   item = new Homegood(newInventory[0]);
+               }
+               item.setName(newInventory[1]);
+               item.setDescription(newInventory[2]);
+               BigDecimal price = new BigDecimal(newInventory[3]);
+               price.setScale(2, RoundingMode.HALF_UP);
+               item.setPrice(price);
+
+               inventory.put(newInventory[0], item);
+            }
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println("Your file was invalid or does not exist.");
+        }
 
         return inventory;
     }

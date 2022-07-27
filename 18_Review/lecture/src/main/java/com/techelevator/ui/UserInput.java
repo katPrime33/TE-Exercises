@@ -35,6 +35,4 @@ public class UserInput {
         String itemKey = scanner.nextLine();
         return itemKey;
     }
-
-    
 }

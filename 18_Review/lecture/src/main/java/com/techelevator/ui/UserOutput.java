@@ -42,7 +42,8 @@ public class UserOutput {
 
     public static void displayInventoryItems(Map<String, Item> inventory){
         for (Map.Entry<String, Item> itemEntry : inventory.entrySet()){
-            System.out.println("[" + itemEntry.getKey() + "] " + itemEntry.getValue().getName() + " : " + itemEntry.getValue().getPrice());
+            System.out.println("[" + itemEntry.getKey() + "] " + itemEntry.getValue().getName() +
+                    " : " + itemEntry.getValue().getPrice());
         }
     }
 

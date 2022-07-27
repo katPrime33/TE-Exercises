@@ -7,6 +7,7 @@ import com.techelevator.models.reader.InventoryBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
 
@@ -30,13 +31,13 @@ public class Main {
                 // make a purchase
                 UserOutput.displayMessage("Enter the SKU of the item you wish to purchase:");
                 String itemKey = UserInput.getItemKeyUserSelected();
-                UserOutput.displayMessage("You selected " + inventory.get(itemKey).getName() + " at a price of: $ " + inventory.get(itemKey).getPrice());
+                UserOutput.displayMessage("You selected " + inventory.get(itemKey).getName() +
+                        " at a price of: $ " + inventory.get(itemKey).getPrice());
             }
             else if(choice.equals("exit")) {
-                // good bye
+                // goodbye
                 break;
             }
         }
     }
-    
 }

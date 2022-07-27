@@ -33,7 +33,7 @@ public class WordSearch {
 		Scanner fileScanner = new Scanner(inputFile);
 		while(fileScanner.hasNextLine()){
 			String nextLineFromFile = fileScanner.nextLine();
-			if(caseSensitivity&& nextLineFromFile.contains((wordToBeSearched))){
+			if(caseSensitivity && nextLineFromFile.contains((wordToBeSearched))){
 				System.out.println(lineCount + ": " + nextLineFromFile);
 			}
 			else if(!caseSensitivity && nextLineFromFile.toLowerCase().contains(wordToBeSearched.toLowerCase())){

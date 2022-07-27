@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class FindAndReplace {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
 
 
         FindAndReplace app = new FindAndReplace();

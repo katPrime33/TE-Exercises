@@ -15,7 +15,7 @@ public class FizzWriter {
 		String destinationFilePath = input.nextLine();
 
 		File destinationFile = new File(destinationFilePath);
-		
+
 		try(PrintWriter dataOutput = new PrintWriter(destinationFile)){
 			for(int i = 1; i <= 300; i++) {
 				if (i % 3 == 0 || Integer.toString(i).contains("3")) {

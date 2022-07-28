@@ -1,5 +1,6 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -36,6 +37,10 @@ public class Application {
         System.out.println("Items for Sale");
 
         for ( Map.Entry<String, Item> mapEntry : inventory.entrySet()) {
+            Item something = new Food("123");
+           something.setName("yummy");
+           something.setPrice(new BigDecimal("3"));
+           something.setDescription("super yummy food thing");
 
             System.out.print( mapEntry.getValue().getSku() );
             System.out.print( " : " + mapEntry.getValue().getName() );

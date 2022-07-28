@@ -18,7 +18,7 @@ public class FileSplitterExample {
         System.out.println("How many lines per file would you like to write?");
         String numberOfLinePerFile = input.nextLine();
 
-        int numOfLines = Integer.parseInt(numberOfLinePerFile);
+        int maxNumOfLines = Integer.parseInt(numberOfLinePerFile);
 
         //read in the file
         //create a new File object
@@ -33,7 +33,9 @@ public class FileSplitterExample {
 
                 //this is the stuff I want to keep repeating:
                 List<String> readFileStrings = new ArrayList<String>();
-                while(lineCount <= numOfLines && fileScanner.hasNextLine()){
+
+                while(lineCount <= maxNumOfLines && fileScanner.hasNextLine()){
+
                     lineFromScanner = lineCount + ") " + fileScanner.nextLine();
                     readFileStrings.add(lineFromScanner);
                     lineCount++;
@@ -46,8 +48,8 @@ public class FileSplitterExample {
                     //use the buffered writer to write to our current file
                     //the string we printed before that we are reading with scanner
                     for(String line : readFileStrings){
-                        buffed.write(line);
-                        buffed.newLine();
+                        buffed.write(line);  //writing line from above list to the file
+                        buffed.newLine();    //had to manually call carriage return to move to the next line in file
                     }
                     // buffed.write(lineFromScanner);
                 } catch (IOException e) {
@@ -55,7 +57,7 @@ public class FileSplitterExample {
                 }
                 //before we check if there are more lines to be read from the file, we increment the numberOfTheFile variable
                 numberOfTheFile++;
-                numOfLines += numOfLines;
+                maxNumOfLines += maxNumOfLines;
             }
 
         } catch (FileNotFoundException e) {

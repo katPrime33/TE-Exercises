@@ -2,4 +2,3 @@
 SELECT city_name, population
 FROM city
 WHERE state_abbreviation = 'OH';
-

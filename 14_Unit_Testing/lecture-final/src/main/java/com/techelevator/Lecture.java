@@ -126,8 +126,8 @@ public class Lecture {
 		/*
 		Given a Cat creates a new Cat with the same values and returns it
 		 */
-		public Cat returnOurCat(Cat cat) {
-		return new Cat(cat.getName(), cat.getBreed(), cat.getAge());
+		//public Cat returnOurCat(Cat cat) {
+	//	return new Cat(cat.getName(), cat.getBreed(), cat.getAge());
 		}
 
 

@@ -1,6 +1,7 @@
 package com.techelevator;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 public class FruitTree {
 
     //member vars
@@ -38,6 +39,9 @@ public class FruitTree {
         return this.piecesOfFruitLeft;
     }
 
+=======
+public interface Taxable {
+>>>>>>> 7b4fd1d9b78ac3667a6886f06cf472b2fb94b339
 =======
 public interface Taxable {
 >>>>>>> 7b4fd1d9b78ac3667a6886f06cf472b2fb94b339

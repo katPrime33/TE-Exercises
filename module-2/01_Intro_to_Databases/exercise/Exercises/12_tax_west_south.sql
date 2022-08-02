@@ -2,4 +2,4 @@
 --in the "West" and "South" census regions with a sales tax that isn't 0% (26 rows)
 SELECT state_name, state_nickname, sales_tax
 FROM state
-WHERE sales_tax != 0 AND census_region BETWEEN 'SOUTH' AND 'West';
+WHERE census_region BETWEEN 'SOUTH' AND 'West' AND sales_tax > 0;

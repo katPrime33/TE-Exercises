@@ -1,7 +1,9 @@
 -- ORDERING RESULTS
 
 -- Populations of all states from largest to smallest.
-
+SELECT population
+FROM state
+ORDER BY population ASC;
 
 -- States sorted alphabetically (A-Z) within their census region. The census regions are sorted in reverse alphabetical (Z-A) order.
 

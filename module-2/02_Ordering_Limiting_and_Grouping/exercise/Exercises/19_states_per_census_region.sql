@@ -3,8 +3,8 @@
 -- Order the results from highest to lowest.
 -- (Note: DC is in a census region, but the territories aren't, so the sum of the counts will equal 51).
 -- (4 rows)
-SELECT COUNT(state) AS num_states, census_region
+SELECT COUNT(*) || ', ' || census_region AS num_states
 FROM state
 WHERE census_region IS NOT NULL
-ORDER BY state DESC
-LIMIT 4;
+GROUP BY census_region
+ORDER BY COUNT(*) DESC;

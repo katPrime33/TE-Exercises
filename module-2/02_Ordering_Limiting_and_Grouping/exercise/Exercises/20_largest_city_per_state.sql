@@ -3,5 +3,6 @@
 -- Order the results from highest to lowest populations.
 -- (56 rows)
 SELECT state_abbreviation || ', ' || population AS city_population
-FROM state
+FROM city
+GROUP BY city_population
 ORDER BY city_population DESC;

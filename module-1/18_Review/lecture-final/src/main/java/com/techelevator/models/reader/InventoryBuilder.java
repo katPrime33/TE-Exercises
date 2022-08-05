@@ -5,41 +5,52 @@ import com.techelevator.models.inventory.Food;
 import com.techelevator.models.inventory.Homegood;
 import com.techelevator.models.inventory.Item;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class InventoryBuilder {
 
-    public Map<String, Item> getInventory() {
-        Food cake = new Food("001");
-        cake.setName("Cake");
-        cake.setDescription("A chocolate cake");
-        cake.setPrice(new BigDecimal("10"));
+    private String path;
+    private Map<String, Item> inventory = new HashMap<>();
 
-        Clothing flipflops = new Clothing("002");
-        flipflops.setName("Flip Flop Sandals");
-        flipflops.setDescription("Protect your feet, but only the bottoms");
-        flipflops.setPrice(new BigDecimal("7"));
+    public InventoryBuilder(String path) throws FileNotFoundException {
+        this.path = path;
+        inventory = readInventoryCSV();
+    }
 
-        Homegood catClock = new Homegood("cat01");
-        catClock.setName("Cat O'Clock");
-        catClock.setDescription("Covered in fur");
-        catClock.setPrice(new BigDecimal("100"));
-
-        Homegood frogMug = new Homegood("f22");
-        frogMug.setName("Frog Mug");
-        frogMug.setDescription("Greenish and not a toad");
-        frogMug.setPrice(new BigDecimal("5.25"));
-
-
-        Map<String, Item> inventory = new HashMap<String, Item>();
-
-        inventory.put(cake.getSku(), cake);
-        inventory.put(flipflops.getSku(), flipflops);
-        inventory.put(catClock.getSku(), catClock);
-        inventory.put(frogMug.getSku(), frogMug);
-
+    public Map<String, Item> getInventory(){
         return inventory;
+    }
+
+    private Map<String, Item> readInventoryCSV() throws FileNotFoundException {
+        File csv = new File(this.path);
+        try(Scanner scanFile = new Scanner(csv)){
+            while(scanFile.hasNextLine()){
+                String lineFromFile = scanFile.nextLine();
+                Item item = itemFromFile(lineFromFile);
+                inventory.put(item.getSku(), item);
+            }
+        }
+        return inventory;
+    }
+
+    private Item itemFromFile(String line){
+        String[] itemArray = line.split("\\|");
+        Item item = null;
+        if(itemArray[4].equalsIgnoreCase("F")){
+            item = new Food(itemArray[0]);
+        } else if (itemArray[4].equalsIgnoreCase("C")) {
+            item = new Clothing(itemArray[0]);
+        } else {
+            item = new Homegood(itemArray[0]);
+        }
+        item.setName(itemArray[1]);
+        item.setDescription(itemArray[2]);
+        item.setPrice(new BigDecimal(itemArray[3]));
+        return item;
     }
 }

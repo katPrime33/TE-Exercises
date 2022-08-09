@@ -21,27 +21,74 @@ public class JdbcCityDao implements CityDao {
 
     @Override
     public City getCity(int cityId) {
-       return null;
+        City city = new City();
+        String sql = "SELECT city_id, city_name, state_abbreviation, population, area FROM city WHERE city_id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, cityId);
+        if(result.next()){
+            city = mapRowToCity(result);
+        }
+       return city;
     }
 
     @Override
     public List<City> getCitiesByState(String stateAbbreviation) {
-       return null;
+        List<City> cityList = new ArrayList<>();
+        String sql = "SELECT city_id, city_name, state_abbreviation, population, area FROM city WHERE state_abbreviation = ?;";
+
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, stateAbbreviation);
+        while(result.next()){
+            cityList.add(mapRowToCity(result));
+
+        }
+        return cityList;
     }
+
 
     @Override
     public City createCity(City city) {
-       return null;
+        String cityName = city.getCityName();
+        String cityState = city.getStateAbbreviation();
+        int population = city.getPopulation();
+        double area = city.getArea();
+        String sql = "INSERT INTO city(city_name, state_abbreviation, population, area)\n" +
+                "VALUES (?, ?, ?, ?) Returning city_id;";
+        //Integer newId = jdbcTemplate.queryForObject(sql, Integer.class, cityName,cityState,population,area );
+        Integer newId = jdbcTemplate.queryForObject(sql, Integer.class, city.getCityName(), city.getStateAbbreviation(), city.getPopulation(), city.getArea());
+        city.setCityId(newId);
+        return city;
     }
 
     @Override
     public void updateCity(City city) {
+        String sql = "UPDATE city\n" +
+                "SET city_name = ?, population = ?, area = ?\n" +
+                "WHERE city_id = ?;";
+
+        Integer updatedId = jdbcTemplate.update(sql, city.getCityName(), city.getPopulation(), city.getArea(), city.getCityId());
+
+        if(updatedId == 1){
+            System.out.println(updatedId);
+        } else {
+            System.out.println("Update failed");
+        }
 
     }
 
     @Override
     public void deleteCity(int cityId) {
+        String sql = "DELETE FROM city\n" +
+                "WHERE city_id = ?;";
+        jdbcTemplate.update(sql, cityId);
+    }
 
+    private City mapRowToCity(SqlRowSet result) {
+        City city = new City();
+        city.setCityId(result.getInt("city_id"));
+        city.setCityName(result.getString("city_name"));
+        city.setStateAbbreviation(result.getString("state_abbreviation"));
+        city.setPopulation(result.getInt("population"));
+        city.setArea(result.getDouble("area"));
+        return city;
     }
 
 }

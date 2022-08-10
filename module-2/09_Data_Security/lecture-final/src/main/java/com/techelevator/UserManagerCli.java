@@ -106,7 +106,12 @@ public class UserManagerCli {
         String password = userInput.nextLine();
 
         User user = userDao.saveUser(username, password);
-        System.out.println("User " + user.getUsername() + " added with id " + user.getId() + "!");
+        if(user == null){
+            System.out.println("Something went wrong. Please try again.");
+        } else {
+            System.out.println("User " + user.getUsername() + " added with id " + user.getId() + "!");
+        }
+
         System.out.println();
     }
 

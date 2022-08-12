@@ -1,71 +1,98 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS department, employee, project, project_employee, timesheet CASCADE;
+DROP TABLE IF EXISTS category_venue, category, reservation, space, venue, city, state CASCADE;
 
-CREATE TABLE department (
-	department_id serial,
-	name varchar(40) UNIQUE NOT NULL,
-	CONSTRAINT PK_department PRIMARY KEY (department_id)
+CREATE TABLE venue (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  city_id INTEGER NOT NULL,
+  description VARCHAR(500) NOT NULL
 );
 
-CREATE TABLE employee (
-	employee_id serial,
-	department_id int,
-	first_name varchar(20) NOT NULL,
-	last_name varchar(30) NOT NULL,
-	birth_date date NOT NULL,
-	hire_date date NOT NULL,
-	CONSTRAINT PK_employee PRIMARY KEY (employee_id),
-	CONSTRAINT FK_employee_department FOREIGN KEY (department_id) REFERENCES department(department_id)
+CREATE TABLE space (
+  id SERIAL PRIMARY KEY,
+  venue_id INTEGER NOT NULL,
+  name VARCHAR(80) NOT NULL,
+  is_accessible BOOLEAN NOT NULL DEFAULT false,
+  open_from INTEGER NULL,
+  open_to INTEGER NULL,
+  daily_rate MONEY NOT NULL,
+  max_occupancy INTEGER NOT NULL
 );
 
-CREATE TABLE project (
-	project_id serial,
-	name varchar(40) UNIQUE NOT NULL,
-	from_date date,
-	to_date date,
-	CONSTRAINT PK_project PRIMARY KEY (project_id)
+CREATE TABLE city (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(80) NOT NULL,
+  state_abbreviation CHAR(2) NOT NULL
 );
 
-CREATE TABLE project_employee (
-	project_id int NOT NULL,
-	employee_id int NOT NULL,
-	CONSTRAINT PK_project_employee PRIMARY KEY (project_id, employee_id),
-	CONSTRAINT FK_project_employee_project FOREIGN KEY (project_id) REFERENCES project(project_id),
-	CONSTRAINT FK_project_employee_employee FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+CREATE TABLE state (
+  abbreviation CHAR(2) PRIMARY KEY,
+  name VARCHAR(15) NOT NULL
 );
 
-CREATE TABLE timesheet (
-    timesheet_id serial,
-    employee_id int NOT NULL,
-    project_id int NOT NULL,
-    date_worked date NOT NULL,
-    hours_worked numeric(5,2) NOT NULL,
-    billable boolean NOT NULL,
-    description varchar(100),
-    CONSTRAINT PK_timesheet PRIMARY KEY (timesheet_id),
-    CONSTRAINT FK_timesheet_employee FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
-    CONSTRAINT FK_timesheet_project FOREIGN KEY (project_id) REFERENCES project(project_id)
+CREATE TABLE category (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(80)
 );
 
--- Need a department so we can add employees
-INSERT INTO department (name)
-VALUES ('Department 1'); -- department_id will be 1 due to serial
+CREATE TABLE category_venue (
+  venue_id INTEGER NOT NULL,
+  category_id INTEGER NOT NULL,
 
--- Need employees so we can add timesheets
-INSERT INTO employee (department_id, first_name, last_name, birth_date, hire_date)
-VALUES (1, 'First1', 'Last1', '1981-01-01', '2001-01-02'), -- employee_id will be 1 due to serial
-       (1, 'First2', 'Last2', '1982-02-01', '2002-02-03'); -- employee_id will be 2 due to serial
+  PRIMARY KEY (venue_id, category_id)
+);
 
--- Need projects so we can add timesheets
-INSERT INTO project (name, from_date, to_date)
-VALUES ('Project 1', '2000-01-02', '2000-12-31'), -- project_id will be 1 due to serial
-       ('Project 2', NULL, NULL);                 -- project_id will be 2 due to serial
+CREATE TABLE reservation (
+  reservation_id SERIAL PRIMARY KEY,
+  space_id INTEGER NOT NULL,
+  number_of_attendees INTEGER NOT NULL DEFAULT 100,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  reserved_for VARCHAR(100) NOT NULL
+);
 
-INSERT INTO timesheet (employee_id, project_id, date_worked, hours_worked, billable, description)
-VALUES (1, 1, '2021-01-01', 1.0, true, 'Timesheet 1'),  -- timesheet_id will be 1 due to serial
-       (1, 1, '2021-01-02', 1.5, true, 'Timesheet 2'),  -- timesheet_id will be 2 due to serial
-       (2, 1, '2021-01-01', 0.25, true, 'Timesheet 3'), -- timesheet_id will be 3 due to serial
-       (2, 2, '2021-02-01', 2.0, false, 'Timesheet 4'); -- timesheet_id will be 4 due to serial
+-- Hidden Owl Eatery
+INSERT INTO venue (id, name, city_id, description) VALUES (1, 'Hidden Owl Eatery', 1, 'This venue has plenty of "property" to enjoy. Roll the dice and check out all of our spaces.');
+
+-- Painted Squirrel Club
+INSERT INTO venue (id, name, city_id, description) VALUES (2, 'Painted Squirrel Club', 1, 'Lock in your reservation now! This venue has dungeons and an underground theme. Not for the faint of heart!');
+
+-- Rusty Farmer Spot
+INSERT INTO venue (id, name, city_id, description) VALUES (3, 'Rusty Farmer Spot', 1, 'This rustic and seasonal spot is fun year-round. Great for equinox celebrations!');
+
+INSERT INTO space (id, venue_id, name, is_accessible, open_from, open_to, daily_rate, max_occupancy) VALUES (1, 1, 'Boardwalk', TRUE, NULL, NULL, '5250', 210);
+INSERT INTO space (id, venue_id, name, is_accessible, open_from, open_to, daily_rate, max_occupancy) VALUES (2, 1, 'Park Place', TRUE, 2, 8, '900', 60);
+INSERT INTO space (id, venue_id, name, is_accessible, open_from, open_to, daily_rate, max_occupancy) VALUES (3, 1, 'Marvin Gardens', TRUE, NULL, NULL, '1650', 110);
+
+INSERT INTO city (id, name, state_abbreviation) VALUES (1, 'Bona', 'MI');
+INSERT INTO city (id, name, state_abbreviation) VALUES (2, 'Srulbury', 'OH');
+INSERT INTO city (id, name, state_abbreviation) VALUES (3, 'Yepford', 'IA');
+INSERT INTO city (id, name, state_abbreviation) VALUES (4, 'Andoshire', 'PA');
+
+-- State
+INSERT INTO state (abbreviation, name) VALUES ('MI', 'Michigan');
+INSERT INTO state (abbreviation, name) VALUES ('OH', 'Ohio');
+INSERT INTO state (abbreviation, name) VALUES ('IA', 'Iowa');
+INSERT INTO state (abbreviation, name) VALUES ('PA', 'Pennsylvania');
+
+-- Category
+INSERT INTO category (id, name) VALUES (1, 'Family Friendly');
+INSERT INTO category (id, name) VALUES (2, 'Outdoors');
+INSERT INTO category (id, name) VALUES (3, 'Historic');
+
+-- Category_Venue
+INSERT INTO category_venue (venue_id, category_id) VALUES (1, 1);
+INSERT INTO category_venue (venue_id, category_id) VALUES (1, 6);
+INSERT INTO category_venue (venue_id, category_id) VALUES (3, 1);
+INSERT INTO category_venue (venue_id, category_id) VALUES (3, 2);
+INSERT INTO category_venue (venue_id, category_id) VALUES (3, 4);
+
+ALTER TABLE venue ADD FOREIGN KEY (city_id) REFERENCES city(id);
+ALTER TABLE space ADD FOREIGN KEY (venue_id) REFERENCES venue(id);
+ALTER TABLE city ADD FOREIGN KEY (state_abbreviation) REFERENCES state(abbreviation);
+ALTER TABLE category_venue ADD FOREIGN KEY (venue_id) REFERENCES venue(id);
+ALTER TABLE category_venue ADD FOREIGN KEY (category_id) REFERENCES category(id);
+ALTER TABLE reservation ADD FOREIGN KEY (space_id) REFERENCES space(id);
 
 COMMIT;

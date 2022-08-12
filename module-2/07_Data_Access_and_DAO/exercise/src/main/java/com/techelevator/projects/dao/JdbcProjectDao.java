@@ -20,22 +20,59 @@ public class JdbcProjectDao implements ProjectDao {
 
 	@Override
 	public Project getProject(int projectId) {
-		return new Project(0, "Not Implemented Yet", null, null);
+		Project project = null;
+		String sql = "SELECT project_id, name, from_date, to_date " +
+				"FROM project " +
+				"WHERE project_id = ?;";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, projectId);
+		if(results.next()){
+			project = mapRowToProject(results);
+		}
+		return project;
 	}
 
 	@Override
 	public List<Project> getAllProjects() {
-		return new ArrayList<>();
+		List<Project> projects = new ArrayList<>();
+		String sql = "SELECT project_id, name, from_date, to_date " +
+				"FROM project;";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while(results.next()){
+			projects.add(mapRowToProject(results));
+		}
+		return projects;
 	}
 
 	@Override
 	public Project createProject(Project newProject) {
-		return null;
+		String sql = "INSERT INTO project (name, from_date, to_date) VALUES(?, ?, ?) RETURNING project_id;";
+		Integer projectId = this.jdbcTemplate.queryForObject(sql, Integer.class, newProject.getName(), newProject.getFromDate(), newProject.getToDate());
+
+	return this.getProject(projectId);
 	}
 
 	@Override
 	public void deleteProject(int projectId) {
+		String sql = "DELETE FROM project_employee WHERE project_id = ?;";
+		jdbcTemplate.update(sql, projectId);
+		sql = "DELETE FROM project WHERE project_id = ?;";
+		jdbcTemplate.update(sql, projectId);
 
+	}
+
+	private Project mapRowToProject(SqlRowSet rowSet){
+		Project project = new Project();
+		project.setName(rowSet.getString("name"));
+		project.setId(rowSet.getInt("project_id"));
+		if(!(rowSet.getDate("from_date") == null)){
+			project.setFromDate(rowSet.getDate("from_date").toLocalDate());
+		}
+		;
+		if(!(rowSet.getDate("to_date") == null)){
+			project.setToDate(rowSet.getDate("to_date").toLocalDate());
+		}
+		;
+		return project;
 	}
 	
 

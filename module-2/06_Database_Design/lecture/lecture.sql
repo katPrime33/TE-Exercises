@@ -1,0 +1,41 @@
+-- Ideas on what track for lecture
+
+-- Artist Table
+--/////////////
+-- artist_name
+-- artist_id(pk)
+--
+--
+-- Artwork Table
+--//////////////
+-- title_of_work
+-- artwork_id(pk)
+-- purchase_date
+-- sales_price
+-- customer_id(fk)
+-- isAvailable
+-- 
+--
+-- Customer Table
+--///////////////
+-- customer_name
+-- customer_id(pk)
+-- customer_address
+-- customer_phone
+-- 
+--
+-- Art_Artist Table
+--/////////////////
+-- artist_id(pk, fk)
+-- artwork_id(pk, fk)
+-- artwork_id_artist_id (pk)
+-- 
+--
+-- Purchase Table
+--///////////////
+-- purchase_id(pk)
+-- customer_id(fk)
+-- purchase_date
+-- sales_price
+-- artwork_id
+

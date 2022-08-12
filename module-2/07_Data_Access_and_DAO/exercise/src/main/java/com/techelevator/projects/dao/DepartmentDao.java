@@ -1,10 +1,13 @@
 package com.techelevator.projects.dao;
 
 import com.techelevator.projects.model.Department;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import java.util.List;
 
 public interface DepartmentDao {
+
 
 	/**
 	 * Get a department from the datastore that belongs to the given id.

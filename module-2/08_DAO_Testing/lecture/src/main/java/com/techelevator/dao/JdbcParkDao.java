@@ -67,7 +67,7 @@ public class JdbcParkDao implements ParkDao {
     public void deletePark(int parkId) {
         String sql = "DELETE FROM park_state WHERE park_id = ?;";
         jdbcTemplate.update(sql, parkId);
-        sql = "DELETE FROM park WHERE park_id = ?";
+        sql = "DELETE FROM park WHERE park_id = ?;";
         jdbcTemplate.update(sql, parkId);
     }
 

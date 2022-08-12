@@ -1,23 +1,26 @@
 Bug 1
 -----
 Test that demonstrates problem:
+getCitiesByState
 
 Expected output:
-
+2
 Actual output:
-
+0
 How did you fix this bug?
-
+in the WHERE statement it originally said city_name and so it should be state_abbreviation
 
 Bug 2
 -----
 Test that demonstrates problem:
-
+updated_city_has_expected_values_when_retrieved
 Expected output:
 
 Actual output:
 
 How did you fix this bug?
+in the cityDAO code-within the jdbcTemplate.update-it had getCityName() listed twice, so we replaced one of them with
+getStateAbbreviation().
 
 
 Bug 3

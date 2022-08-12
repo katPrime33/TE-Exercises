@@ -40,6 +40,10 @@ public class JdbcUserDao implements UserDao {
      */
     @Override
     public User saveUser(String userName, String password) {
+        if(userName.contains("'") || password.contains("'")){
+            return null;
+        }
+
         byte[] salt = passwordHasher.generateRandomSalt();
         String hashedPassword = passwordHasher.computeHash(password, salt);
         String saltString = new String(Base64.encode(salt));
@@ -65,7 +69,7 @@ public class JdbcUserDao implements UserDao {
      */
     @Override
     public boolean isUsernameAndPasswordValid(String userName, String password) {
-        String sqlSearchForUser = "SELECT * FROM users WHERE UPPER(username) = '" + userName.toUpperCase() + "'";
+        String sqlSearchForUser = "SELECT * FROM users WHERE UPPER(username) = ?;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser);
         if (results.next()) {

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class JdbcEmployeeDaoTest extends BaseDaoTest {
@@ -18,7 +19,7 @@ public class JdbcEmployeeDaoTest extends BaseDaoTest {
                 LocalDate.parse("1982-02-01"), LocalDate.parse("2002-02-03"));
     private static final Employee EMPLOYEE_3 =
         new Employee(3, 1, "First3", "Last3",
-                LocalDate.parse("1983-03-01"), LocalDate.parse("2003-03-04"));
+                LocalDate.parse("1983-03-01"),LocalDate.parse("2003-03-04"));
     private static final Employee EMPLOYEE_4 =
         new Employee(4, 1, "First4", "Last4",
                 LocalDate.parse("1984-04-01"), LocalDate.parse("2004-04-05"));

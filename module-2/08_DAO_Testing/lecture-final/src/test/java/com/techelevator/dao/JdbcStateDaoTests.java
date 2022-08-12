@@ -13,7 +13,7 @@ public class JdbcStateDaoTests extends BaseDaoTests {
     private static final State STATE_B = new State("BB", "State B");
     private static final State STATE_C = new State("CC", "State C");
 
-    private JdbcStateDao sut;
+    private JdbcStateDao sut; //System under test??
 
     @Before
     public void setup() {

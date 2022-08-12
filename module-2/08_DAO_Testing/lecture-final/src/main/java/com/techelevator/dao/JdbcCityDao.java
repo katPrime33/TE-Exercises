@@ -34,7 +34,7 @@ public class JdbcCityDao implements CityDao {
         List<City> cities = new ArrayList<>();
         String sql = "SELECT city_id, city_name, state_abbreviation, population, area " +
                      "FROM city " +
-                     "WHERE city_name = ? " +
+                     "WHERE state_abbreviation = ? " +
                      "ORDER BY city_id;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, stateAbbreviation);
         while (results.next()) {
@@ -58,7 +58,7 @@ public class JdbcCityDao implements CityDao {
         String sql = "UPDATE city " +
                     "SET city_name = ?, state_abbreviation = ?, population = ?, area = ? " +
                     "WHERE city_id = ?;";
-        jdbcTemplate.update(sql, city.getCityName(), city.getCityName(), city.getPopulation(),
+        jdbcTemplate.update(sql, city.getCityName(), city.getStateAbbreviation(), city.getPopulation(),
                 city.getArea(), city.getCityId());
     }
 
@@ -71,7 +71,7 @@ public class JdbcCityDao implements CityDao {
     private City mapRowToCity(SqlRowSet rowSet) {
         City city = new City();
         city.setCityId(rowSet.getInt("city_id"));
-        city.setCityName(rowSet.getString("name"));
+        city.setCityName(rowSet.getString("city_name"));
         city.setStateAbbreviation(rowSet.getString("state_abbreviation"));
         city.setPopulation(rowSet.getInt("population"));
         city.setArea(rowSet.getDouble("area"));

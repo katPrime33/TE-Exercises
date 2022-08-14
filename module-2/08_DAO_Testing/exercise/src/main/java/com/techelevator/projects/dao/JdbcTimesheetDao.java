@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class JdbcTimesheetDao implements TimesheetDao {
         List<Timesheet> timesheets = new ArrayList<>();
         String sql = "SELECT timesheet_id, employee_id, project_id, date_worked, hours_worked, billable, description " +
                      "FROM timesheet " +
-                     "WHERE employee_id = ? " +
+                     "WHERE project_id = ? " +
                      "ORDER BY timesheet_id;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, projectId);
         while (results.next()) {
@@ -61,8 +62,9 @@ public class JdbcTimesheetDao implements TimesheetDao {
 
     @Override
     public Timesheet createTimesheet(Timesheet newTimesheet) {
+
         String sql = "INSERT INTO timesheet (employee_id, project_id, date_worked, hours_worked, billable, description) " +
-                     "VALUES (?, ?, ?, ?, ?, ?) RETURNING timesheet_id;";
+                "VALUES (?, ?, ?, ?, ?, ?) RETURNING timesheet_id;";
         Integer newId = jdbcTemplate.queryForObject(sql, Integer.class, newTimesheet.getEmployeeId(), newTimesheet.getProjectId(),
                      newTimesheet.getDateWorked(), newTimesheet.getHoursWorked(), newTimesheet.isBillable(),
                      newTimesheet.getDescription());

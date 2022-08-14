@@ -83,10 +83,10 @@ INSERT INTO category (id, name) VALUES (3, 'Historic');
 
 -- Category_Venue
 INSERT INTO category_venue (venue_id, category_id) VALUES (1, 1);
-INSERT INTO category_venue (venue_id, category_id) VALUES (1, 6);
+INSERT INTO category_venue (venue_id, category_id) VALUES (1, 6); --this will need changed
 INSERT INTO category_venue (venue_id, category_id) VALUES (3, 1);
 INSERT INTO category_venue (venue_id, category_id) VALUES (3, 2);
-INSERT INTO category_venue (venue_id, category_id) VALUES (3, 4);
+INSERT INTO category_venue (venue_id, category_id) VALUES (3, 4); --this will need changed
 
 ALTER TABLE venue ADD FOREIGN KEY (city_id) REFERENCES city(id);
 ALTER TABLE space ADD FOREIGN KEY (venue_id) REFERENCES venue(id);

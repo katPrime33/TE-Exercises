@@ -10,5 +10,9 @@ public interface VenueDao {
 
     Venue getVenueByCity(int cityId);
 
-    List<Venue> getVenues();
+    List<Venue> getAllVenues();
+
+    void updateVenue(Venue venue);
+
+    void deleteVenue(int venueId);
 }

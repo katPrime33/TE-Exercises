@@ -1,43 +1,46 @@
 Bug 1
 -----
 Test that demonstrates problem:
-
+getTimesheetsByProjectId_returns_list_of_all_timesheets_for_project
 Expected output:
-
+a list of timesheets for a specified project
 Actual output:
-
+a list of timesheets for a specified employee
 How did you fix this bug?
-
+changed employee_id to project_id in the WHERE statement
 
 Bug 2
 -----
 Test that demonstrates problem:
+createTimesheet_returns_timesheet_with_id_and_expected_values
 
 Expected output:
-
+returns id of new timesheet created
 Actual output:
-
+throwing null pointer exception
 How did you fix this bug?
-
+added new testTimesheet in my tests
 
 Bug 3
 -----
 Test that demonstrates problem:
-
+created_timesheet_has_expected_values_when_retrieved
 Expected output:
-
+returns all data of the new timesheet created
 Actual output:
-
+throws null pointer exception
 How did you fix this bug?
-
+added new testTimesheet in my tests
 
 Bug 4
 -----
 Test that demonstrates problem:
-
+getBillableHours_returns_correct_total
 Expected output:
 
 Actual output:
 
 How did you fix this bug?
-
+I don't know about this one. This is the one I felt as though
+I had forced to work, but I rewrote it a little differently
+and it was still passing.

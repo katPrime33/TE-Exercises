@@ -2,6 +2,8 @@ package com.techelevator.view;
 
 
 
+import com.techelevator.model.Venue;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,13 +30,20 @@ public class Menu {
 
     }
 
-//    public void showListOfVenues(List<Venue> venues) {
-//        System.out.println("Printing venues:");
-//        for (int i = 0; i < venues.size(); i++) {
-//            System.out.println( (i + 1) + ") " + venues.get(i).getName());
-//        }
-//
-//    }
+
+    public void showListOfVenues(List<Venue> venues) {
+        System.out.println("Printing venues:");
+        for (int i = 0; i < venues.size(); i++) {
+            Venue venue = venues.get(i);
+            System.out.println( (i + 1) + ") " + venue.getName() + ": ");
+            System.out.println("           " + venue.getDescription());
+            System.out.println("           " + "Categories: " + venue.getCategories());
+            System.out.println("           " + venue.getCity() + ", " + venue.getState().getAbbreviation());
+            System.out.println();
+            System.out.println();
+        }
+
+    }
 
     public int getSelectedVenueFromUser() {
         int venueIndex = 0;
@@ -52,13 +61,13 @@ public class Menu {
         return venueIndex;
     }
 
-//    public void showVenue(Venue returnedVenue) {
-//        System.out.println(returnedVenue.getName());
-//        System.out.println("Location: " + returnedVenue.getState().getName());
-//        System.out.println("Categories: " + String.join(",", returnedVenue.getCategories()));
-//        System.out.println();
-//        System.out.println(returnedVenue.getDescription());
-//    }
+    public void showVenue(Venue returnedVenue) {
+        System.out.println(returnedVenue.getName());
+        System.out.println("Location: " + returnedVenue.getState().getName());
+        System.out.println("Categories: " + String.join(",", returnedVenue.getCategories()));
+        System.out.println();
+        System.out.println(returnedVenue.getDescription());
+    }
 
 
 }

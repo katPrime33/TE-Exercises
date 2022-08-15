@@ -82,4 +82,10 @@ public class ConsoleService {
         }
     }
 
+    public String getUserInput(String message){
+        System.out.println(message);
+        String userInput = scanner.nextLine();
+        return userInput;
+    }
+
 }

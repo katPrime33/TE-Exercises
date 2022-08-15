@@ -18,14 +18,23 @@ public class App {
         while (menuSelection != 0) {
             consoleService.printMainMenu();
             menuSelection = consoleService.promptForMenuSelection();
+            System.out.println();
             if (menuSelection == 1) {
-                handleListAllAuctions();
+                consoleService.printAuctions(auctionService.getAllAuctions());
+//                handleListAllAuctions();
             } else if (menuSelection == 2) {
-                handleShowAuctionDetails();
+                String userInput = consoleService.getUserInput("Please enter Auction ID:");
+                int auctionId = Integer.parseInt(userInput);
+                consoleService.printAuction(auctionService.getAuction(auctionId));
+//                handleShowAuctionDetails();
             } else if (menuSelection == 3) {
-                handleFindAuctionsByTitle();
+                String userInput = consoleService.getUserInput("Please enter the title of the Auction:");
+                consoleService.printAuctions(auctionService.getAuctionsMatchingTitle(userInput));
+//                handleFindAuctionsByTitle();
             } else if (menuSelection == 4) {
-                handleFindAuctionsByPrice();
+                String userInput = consoleService.getUserInput("Please enter the price of an Auction:");
+                consoleService.printAuctions(auctionService.getAuctionsAtOrBelowPrice(Double.parseDouble(userInput)));
+//                handleFindAuctionsByPrice();
             } else if (menuSelection != 0) {
                 System.out.println("Invalid Selection");
             }

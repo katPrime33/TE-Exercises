@@ -20,16 +20,28 @@ public class App {
             consoleService.printMainMenu();
             menuSelection = consoleService.promptForMenuSelection();
             if (menuSelection == 1) {
-                System.out.println("Not implemented");
+                consoleService.printHotels(hotelService.listHotels());
+                System.out.println();
             } else if (menuSelection == 2) {
-                System.out.println("Not implemented");
+                consoleService.printReviews(hotelService.listReviews());
+                System.out.println();
             } else if (menuSelection == 3) {
-                System.out.println("Not implemented");
+                String userInput = consoleService.getUserInput("Please enter Hotel ID:");
+                int hotelId = Integer.parseInt(userInput);
+                consoleService.printHotel(hotelService.getHotelById(hotelId));
+                System.out.println();
             } else if (menuSelection == 4) {
-                System.out.println("Not implemented");
+                String userInput = consoleService.getUserInput("Please enter Hotel ID:");
+                int hotelId = Integer.parseInt(userInput);
+                consoleService.printReviews(hotelService.getReviewsByHotelId(hotelId));
+                System.out.println();
             } else if (menuSelection == 5) {
-                System.out.println("Not implemented");
+                String userInput = consoleService.getUserInput("Please enter the star rating of the hotel:");
+                int stars = Integer.parseInt(userInput);
+                consoleService.printHotels(hotelService.getHotelsByStarRating(stars));
+                System.out.println();
             } else if (menuSelection == 6) {
+                System.out.println(hotelService.getWithCustomQuery());
                 System.out.println("Not implemented - Create a custom Web API query here");
             } else if (menuSelection == 0) {
                 continue;

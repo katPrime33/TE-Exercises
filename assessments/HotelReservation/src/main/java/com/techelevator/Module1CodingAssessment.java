@@ -12,7 +12,7 @@ public class Module1CodingAssessment {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		HotelReservation newReservation = new HotelReservation("Kat ", 2);
+		HotelReservation newReservation = new HotelReservation("Kat ", 5);
 
 		System.out.println("RESERVATION " + " - " + newReservation.getName() + " - $" +
 				newReservation.calculateEstimatedTotal());

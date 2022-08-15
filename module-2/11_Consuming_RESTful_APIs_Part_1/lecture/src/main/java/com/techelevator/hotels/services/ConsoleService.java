@@ -25,9 +25,9 @@ public class ConsoleService {
         System.out.println("----Hotels Main Menu----");
         System.out.println("1: List Hotels");
         System.out.println("2: List Reviews");
-        System.out.println("3: Show Details for Hotel ID 1");
-        System.out.println("4: List Reviews for Hotel ID 1");
-        System.out.println("5: List Hotels with star rating 3");
+        System.out.println("3: Show Details for given hotel");
+        System.out.println("4: List Reviews for given hotel");
+        System.out.println("5: List Hotels with given star rating");
         System.out.println("6: Public API Query");
         System.out.println("0: Exit");
         System.out.println();
@@ -42,6 +42,11 @@ public class ConsoleService {
         }
     }
 
+    public String getUserInput(String message){
+        System.out.println(message);
+        String userInput = scanner.nextLine();
+        return userInput;
+    }
     public void printHotel(Hotel hotel) {
         System.out.println(hotel.toString());
     }

@@ -5,10 +5,13 @@ import com.techelevator.reservations.dao.MemoryHotelDao;
 import com.techelevator.reservations.dao.MemoryReservationDao;
 import com.techelevator.reservations.dao.ReservationDao;
 import com.techelevator.reservations.model.Hotel;
+import com.techelevator.reservations.model.Reservation;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@RestController
 public class HotelController {
 
     private HotelDao hotelDao;
@@ -40,4 +43,65 @@ public class HotelController {
         return hotelDao.get(id);
     }
 
+    /**
+        list all the reservations
+     */
+
+    @RequestMapping(path = "/reservations", method = RequestMethod.GET)
+    public List<Reservation> listReservations(){
+        return reservationDao.findAll();
+    }
+
+    /**
+     * list reservations for a hotel
+     * */
+
+    @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.GET)
+    public List<Reservation> listReservationsByHotel(@PathVariable int id){
+        return reservationDao.findByHotel(id);
+    }
+
+    /**
+     * get a reservation by id
+     * */
+
+    @RequestMapping(path = "/reservations/{id}", method = RequestMethod.GET)
+    public Reservation getReservation(@PathVariable int id){
+        return reservationDao.get(id);
+    }
+
+    /**
+     * add a reservation
+     * */
+
+    @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.POST)
+    public Reservation addReservation(@PathVariable int id, @RequestBody Reservation reservation){
+        return reservationDao.create(reservation,id);
+    }
+
+    /**
+     * users can filter hotels by city and state
+     * /hotels/filter?state=oh&city=cleveland
+     *
+     * */
+
+    @RequestMapping(path = "/hotels/filter", method = RequestMethod.GET)
+    public List<Hotel> filterByStateAndCity(@RequestParam String state, @RequestParam(required = false) String city){
+        List<Hotel> hotels = hotelDao.list();
+        List<Hotel> filteredHotels = new ArrayList<>();
+        for(Hotel hotel : hotels){
+            if(city != null){
+                if((hotel.getAddress().getCity().toLowerCase().equalsIgnoreCase(city)) && hotel.getAddress().getState().toLowerCase().equals(state.toLowerCase())){
+                    filteredHotels.add(hotel);
+                }
+            } else {
+                if(hotel.getAddress().getState().toLowerCase().equals(state.toLowerCase())){
+                    filteredHotels.add(hotel);
+                }
+            }
+
+        }
+
+        return filteredHotels;
+    }
 }

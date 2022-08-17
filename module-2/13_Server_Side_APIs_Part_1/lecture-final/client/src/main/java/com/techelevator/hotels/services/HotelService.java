@@ -13,42 +13,42 @@ import org.springframework.web.client.RestTemplate;
 
 public class HotelService {
 
-    private static final String API_BASE_URL = "http://localhost:3000/";
+    private static final String API_BASE_URL = "http://localhost:8080/";
     private final RestTemplate restTemplate = new RestTemplate();
 
     /**
      * Create a new reservation in the hotel reservation system
      */
     public Reservation addReservation(Reservation newReservation) {
-        HttpEntity<Reservation> reservationHttpEntity = makeReservationEntity(newReservation);
-        Reservation returnedReservation = null;
-        try{
-            returnedReservation = restTemplate.postForObject(API_BASE_URL + "reservations",reservationHttpEntity, Reservation.class);
-        }catch(RestClientResponseException ex){
-            BasicLogger.log(ex.getRawStatusCode() + " : " + ex.getStatusText());
-        } catch (ResourceAccessException ex){
-            BasicLogger.log(ex.getMessage());
-        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Reservation> entity = new HttpEntity<>(newReservation, headers);
 
+        Reservation returnedReservation = null;
+        try {
+           returnedReservation  = restTemplate.postForObject(API_BASE_URL + "reservations", entity, Reservation.class);
+        } catch (RestClientResponseException | ResourceAccessException e) {
+            BasicLogger.log(e.getMessage());
+        }
         return returnedReservation;
     }
 
     /**
-     * Updates an existing reservation by replacing the old one with a new
-     * reservation
+     * Updates an existing reservation by replacing the old one with a new reservation
      */
     public boolean updateReservation(Reservation updatedReservation) {
-        HttpEntity<Reservation> reservationHttpEntity = makeReservationEntity(updatedReservation);
-        try{
-            restTemplate.put(API_BASE_URL+ "reservations/"+ updatedReservation.getId(), reservationHttpEntity, Reservation.class);
-            return true;
-        }catch(RestClientResponseException ex){
-            BasicLogger.log(ex.getRawStatusCode() + " : " + ex.getStatusText());
-        } catch (ResourceAccessException ex){
-            BasicLogger.log(ex.getMessage());
-        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Reservation> entity = new HttpEntity<>(updatedReservation, headers);
 
-        return false;
+        boolean success = false;
+        try {
+            restTemplate.put(API_BASE_URL + "reservations/" + updatedReservation.getId(), entity);
+            success = true;
+        } catch (RestClientResponseException | ResourceAccessException e) {
+            BasicLogger.log(e.getMessage());
+        }
+        return success;
     }
 
     /**
@@ -56,13 +56,11 @@ public class HotelService {
      */
     public boolean deleteReservation(int id) {
         boolean success = false;
-        try{
+        try {
             restTemplate.delete(API_BASE_URL + "reservations/" + id);
             success = true;
-        } catch(RestClientResponseException ex){
-            BasicLogger.log(ex.getRawStatusCode() + " : " + ex.getStatusText());
-        } catch (ResourceAccessException ex){
-            BasicLogger.log(ex.getMessage());
+        } catch (RestClientResponseException | ResourceAccessException e) {
+            BasicLogger.log(e.getMessage());
         }
         return success;
     }
@@ -76,11 +74,7 @@ public class HotelService {
         Hotel[] hotels = null;
         try {
             hotels = restTemplate.getForObject(API_BASE_URL + "hotels", Hotel[].class);
-        } catch (RestClientResponseException e) {
-            // handles exceptions thrown by rest template and contains status codes
-            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
-        } catch (ResourceAccessException e) {
-            // i/o error, ex: the server isn't running
+        } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
         }
         return hotels;
@@ -93,9 +87,7 @@ public class HotelService {
         Reservation[] reservations = null;
         try {
             reservations = restTemplate.getForObject(API_BASE_URL + "reservations", Reservation[].class);
-        } catch (RestClientResponseException e) {
-            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
-        } catch (ResourceAccessException e) {
+        } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
         }
         return reservations;
@@ -108,9 +100,7 @@ public class HotelService {
         Reservation[] reservations = null;
         try {
             reservations = restTemplate.getForObject(API_BASE_URL + "hotels/" + hotelId + "/reservations", Reservation[].class);
-        } catch (RestClientResponseException e) {
-            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
-        } catch (ResourceAccessException e) {
+        } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
         }
         return reservations;
@@ -123,20 +113,10 @@ public class HotelService {
         Reservation reservation = null;
         try {
             reservation = restTemplate.getForObject(API_BASE_URL + "reservations/" + reservationId, Reservation.class);
-        } catch (RestClientResponseException e) {
-            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
-        } catch (ResourceAccessException e) {
+        } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
         }
         return reservation;
     }
 
-    private HttpEntity<Reservation> makeReservationEntity(Reservation reservation){
-        //header
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        //entity
-        HttpEntity<Reservation> reservationHttpEntity = new HttpEntity<>(reservation, headers);
-        return reservationHttpEntity;
-    }
 }

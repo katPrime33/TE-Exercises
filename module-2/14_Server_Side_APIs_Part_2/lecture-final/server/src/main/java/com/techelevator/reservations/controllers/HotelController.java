@@ -9,6 +9,7 @@ import com.techelevator.reservations.model.Reservation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,15 +81,32 @@ public class HotelController {
      * Create a new reservation for a given hotel
      *
      * @param reservation
-     * @param hotelID
+     *
      */
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.POST)
-    public Reservation addReservation(@RequestBody Reservation reservation, @PathVariable("id") int hotelID)
+   @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/reservations", method = RequestMethod.POST)
+    public Reservation addReservation(@Valid @RequestBody Reservation reservation)
             throws HotelNotFoundException {
-        return reservationDao.create(reservation, hotelID);
+        return reservationDao.create(reservation, reservation.getHotelID());
     }
 
+    /**
+     * update reservation at /reservations/id
+     * */
+
+    @RequestMapping(path = "/reservations/{id}", method = RequestMethod.PUT)
+    public Reservation update(@RequestBody Reservation updatedReservation, @PathVariable int id) throws ReservationNotFoundException {
+        return reservationDao.update(updatedReservation, id);
+    }
+
+    /**
+     * delete reservation
+     * */
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/reservations/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable int id) throws ReservationNotFoundException {
+        reservationDao.delete(id);
+    }
     /**
      * /hotels/filter?state=oh&city=cleveland
      *

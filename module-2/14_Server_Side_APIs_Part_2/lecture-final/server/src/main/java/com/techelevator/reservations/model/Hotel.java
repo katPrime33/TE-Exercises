@@ -1,6 +1,9 @@
 package com.techelevator.reservations.model;
 
+import javax.validation.constraints.Min;
+
 public class Hotel {
+
 
     private int id;
     private String name;

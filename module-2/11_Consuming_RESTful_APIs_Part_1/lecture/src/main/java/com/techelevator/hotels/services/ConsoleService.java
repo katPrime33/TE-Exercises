@@ -29,6 +29,7 @@ public class ConsoleService {
         System.out.println("4: List Reviews for given hotel");
         System.out.println("5: List Hotels with given star rating");
         System.out.println("6: Public API Query");
+        System.out.println("7: Programmer's Joke of the Day");
         System.out.println("0: Exit");
         System.out.println();
     }

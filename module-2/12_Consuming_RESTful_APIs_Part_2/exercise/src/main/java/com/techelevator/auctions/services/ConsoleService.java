@@ -114,8 +114,22 @@ public class ConsoleService {
         return newAuction;
     }
 
-    private Auction makeAuction(String csv) {
-        return null;
+    public Auction makeAuction(String csv) {
+        Auction auction = null;
+        String[] parsed = csv.split(",");
+        if(parsed.length == 5){
+            try{
+                auction = new Auction();
+                auction.setId(Integer.parseInt(parsed[0].trim()));
+                auction.setTitle(parsed[1].trim());
+                auction.setDescription(parsed[2].trim());
+                auction.setUser(parsed[3].trim());
+                auction.setCurrentBid(Double.parseDouble(parsed[4].trim()));
+            }catch(NumberFormatException ex){
+                auction = null;
+            }
+        }
+        return auction;
     }
 
     public void pause() {

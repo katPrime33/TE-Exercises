@@ -1,5 +1,6 @@
 package com.techelevator.auctions.services;
 
+import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
 import com.techelevator.util.BasicLogger;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,18 +18,42 @@ public class AuctionService {
 
 
     public Auction add(Auction newAuction) {
-        // place code here
-        return null;
+        HttpEntity<Auction> auctionHttpEntity = makeEntity(newAuction);
+        Auction auction = null;
+        try{
+            restTemplate.postForObject(API_BASE_URL, auctionHttpEntity, Auction.class);
+        } catch(RestClientResponseException ex){
+            BasicLogger.log(ex.getRawStatusCode() + " : " + ex.getStatusText());
+        } catch(ResourceAccessException ex){
+            BasicLogger.log(ex.getMessage());
+        }
+        return auction;
     }
 
     public boolean update(Auction updatedAuction) {
-        // place code here
+        HttpEntity<Auction> auctionHttpEntity = makeEntity(updatedAuction);
+        try{
+            restTemplate.put(API_BASE_URL + updatedAuction.getId(), auctionHttpEntity, Auction.class);
+            return true;
+        }catch(RestClientResponseException ex){
+            BasicLogger.log(ex.getRawStatusCode() + " : " + ex.getStatusText());
+        } catch(ResourceAccessException ex){
+            BasicLogger.log(ex.getMessage());
+        }
         return false;
     }
 
     public boolean delete(int auctionId) {
-        // place code here
-        return false;
+        boolean success = false;
+        try{
+            restTemplate.delete(API_BASE_URL + auctionId);
+            success = true;
+        }catch(RestClientResponseException ex){
+            BasicLogger.log(ex.getRawStatusCode() + " : " + ex.getStatusText());
+        } catch(ResourceAccessException ex){
+            BasicLogger.log(ex.getMessage());
+        }
+        return success;
     }
 
     public Auction[] getAllAuctions() {
@@ -80,7 +105,12 @@ public class AuctionService {
     }
 
     private HttpEntity<Auction> makeEntity(Auction auction) {
-        return null;
+        //header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        //entity
+        HttpEntity<Auction> auctionHttpEntity = new HttpEntity<>(auction, headers);
+        return auctionHttpEntity;
     }
 
 }

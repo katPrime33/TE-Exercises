@@ -2,12 +2,14 @@ package com.techelevator.hotels.services;
 
 import com.techelevator.hotels.model.City;
 import com.techelevator.hotels.model.Hotel;
+import com.techelevator.hotels.model.Joke;
 import com.techelevator.hotels.model.Review;
 import org.springframework.web.client.RestTemplate;
 
 public class HotelService {
 
     private static final String API_BASE_URL = "http://localhost:3000/";
+    private static final String API_JOKE_URL = "http://v2.jokeapi.dev/joke/Any?safe-mode";
     private final RestTemplate restTemplate = new RestTemplate();
 
     public Hotel[] listHotels() {
@@ -39,6 +41,12 @@ public class HotelService {
     public City getWithCustomQuery(){
         City hotelCity = restTemplate.getForObject("https://api.teleport.org/api/cities/geonameid%3A5128581/", City.class);
         return hotelCity;
+    }
+
+    public Joke getJoke(){
+        Joke joke = restTemplate.getForObject(API_JOKE_URL, Joke.class);
+
+        return joke;
     }
 
 }

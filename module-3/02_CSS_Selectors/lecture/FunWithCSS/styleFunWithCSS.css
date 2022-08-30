@@ -1,0 +1,68 @@
+
+*{
+    box-sizing: border-box;
+}
+div{
+    height: 100px;
+    width: 8em;
+}
+#one{
+    background-color: purple;
+    padding: .25%;
+    border: 10px;
+    border-style: double;
+    border-color: rgb(60, 187, 187);
+}
+#two{
+    background-color: rgb(192, 151, 108);
+    padding: 2%;
+    border: 10px;
+    border-style:double ;
+    border-color: black;
+}
+#three{
+    background-color:lightseagreen;
+    padding: 2%;
+    border: 10px;
+    border-style: double;
+    border-color: rgb(130, 129, 129);
+}
+#imgContainer{
+    background-color: rgb(138, 55, 55);
+    padding: 2%;
+    border: 10px;
+    border-style: double;
+    border-color: rgb(37, 219, 156);
+}
+#container{
+   position: relative;
+    height: 250px;
+    width: 675px;
+    background: rgb(255, 255, 255);
+    background-image: linear-gradient(90deg, rgba(243, 176, 176, 0.5) 50%, transparent 0),
+                      linear-gradient(rgba(206, 38, 38, 0.5) 50%, transparent 0);
+    background-size: 50px 50px;
+}
+/* #one{
+    color: whitesmoke;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+} */
+img{
+    height: 60px;
+    image-orientation: from-image;
+}
+#corndog{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: -7.5px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+}
+#aftermath{
+    position: absolute;
+    height: 65px;
+}

@@ -1,0 +1,102 @@
+body{
+    background-color: rgb(150, 150, 150);
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+    color: whitesmoke;
+    text-align: center;
+    font-size: 40px;
+}
+#tagline{
+    color: whitesmoke;
+    text-align: center;
+    font-size: 16px;
+}
+#sarah{
+    height: 400px;
+}
+#sarahManning{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#helenaPic{
+    height: 400px;
+}
+#helena{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#cosima{
+    height: 400px;
+}
+#cosimaNiehaus{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#alison{
+    height: 300px;
+}
+#alisonHendrix{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#rachel{
+    height: 400px;
+}
+#rachelDuncan{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#beth{
+    height: 400px;
+}
+#bethChilds{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#krystal{
+    height: 300px;
+}
+#krystalGoderitch{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#mk{
+    height: 400px;
+}
+#veeraSouminen{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#katja{
+    height: 400px;
+}
+#katjaObinger{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#tony{
+    height: 400px;
+}
+#tonyZwickey{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#jennifer{
+    height: 400px;
+}
+#jenniferFitzsimmons{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#camilla{
+    height: 400px;
+}
+#camillaTorres{
+    font-size: 12px;
+    color: whitesmoke;
+}
+#toMainPage{
+    padding: 1%;
+    text-align: center;
+}

@@ -1,0 +1,43 @@
+body{
+    background-color: rgb(150, 150, 150);
+    font-family: Arial, Helvetica, sans-serif;
+}
+form{
+    background-color: grey
+}
+h1{
+    text-align: center;
+    color: whitesmoke;
+    font-size: 40px;
+}
+h2{
+    color: whitesmoke;
+}
+.nameDiv{
+    color: whitesmoke;
+    padding: 1%;
+}
+.emailDiv{
+    color: whitesmoke;
+    padding: 1%;
+}
+.birthday{
+    color: whitesmoke;
+    padding: 1%;
+}
+.colorDiv{
+    color: whitesmoke;
+    padding: 1%;
+}
+.numberDiv{
+    color: whitesmoke;
+    padding: 1%;
+}
+.confirmDiv{
+    color: whitesmoke;
+    padding: 1%;
+}
+.submitDiv{
+    color: whitesmoke;
+    padding: 1%;
+}

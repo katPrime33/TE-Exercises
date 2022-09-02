@@ -1,5 +1,57 @@
  
+ 
+/*As I found an element that I wanted to be a flex container, I just added their selector to this list*/
 
+ #hero footer,
+ #featured section,
+ #featured section article div,
+ #all-items section article,
+ body{
+   display: flex;
+ }
+ 
+
+ 
+ #hero footer{
+   /*The footer element nested in the element with the id="hero" needs to spread out its contents along the main axis*/
+   justify-content: space-between;
+   /*To give space above and below the item, since this is using the default flex-direction, we want to center along the cross-axis  */
+   align-items: center;
+ }
+
+
+ /*To center the the carrot, fish and cheese icons, I made the div that contains them a flex container, and then centered them along the main-axis */
+ #featured section article div{
+   justify-content: center;
+ }
+
+ /*I could have also used flex-direction: row-reverse*/
+ #all-items article:nth-child(even) div:first-child{
+   order: 2;
+ }
+
+ #all-items article div:last-child{
+   flex-basis: 80%;
+ }
+
+ /*Add a breakpoint to show the sections changing the flex-direction to column when the viewport is below 1025px.
+  Another way we could have achieved this is by setting the flex-wrap: wrap property for these sections.*/
+@media screen and (max-width: 1024px){
+  #featured section{
+    flex-direction: column;
+  }
+
+  /*We wanted to remove the border of the middle article when the viewport was smaller. I could only get it to work with the !important tag.*/  
+  #featured section article:nth-child(even) {
+   border: none !important;
+  }
+}
+
+/*Because the way it rendered the page with all the contents squished to the left side, I made the body a flex container and its contents to display as a column. Then center it along the cross-axis.*/
+body{
+  flex-direction: column;
+  align-items: center;
+}
 
 /***** enter flexbox CSS above this line *****/
 

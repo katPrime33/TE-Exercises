@@ -2,23 +2,32 @@ body {
   margin: 20px;
   padding: 0
 }
-
 header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   background-color: #F0F0F0;
   padding: 20px;
 }
-
+a{
+  justify-self: flex-start;
+}
 .logo {
   width: 140px;
 }
-
+nav{
+  flex-grow: 2;
+}
 ul {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
-
 li {
+  justify-self: center;
   font-family: 'Oswald', sans-serif;
   font-size: 20px;
   text-transform: uppercase;
@@ -26,13 +35,11 @@ li {
   padding: 0 20px 0 0;
   margin-left: 20px;
 }
-
 a,
 a:visited {
   color: #707070;
   text-decoration: none;
 }
-
 a:hover {
   color: #00AFEF;
   text-decoration: underline;

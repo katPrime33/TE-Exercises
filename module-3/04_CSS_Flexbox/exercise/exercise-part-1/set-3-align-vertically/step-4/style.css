@@ -5,14 +5,20 @@ body {
 }
 
 .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   background-color: #F0F0F0;
   height: 500px;
 }
 
 .box {
+  height: 40px;
+  width: 40px;
   padding: 40px 55px;
   background-color: #00AFEF;
   color: #fff;
   border: solid 1px #777;
+  align-self: center;
 }
 

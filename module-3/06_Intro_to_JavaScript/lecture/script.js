@@ -10,8 +10,23 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
+  const neverChanging = "oops I did it again";
   // Declares a variable those value can be changed
+  let changingIsCool;
+  changingIsCool = "so not cool";
   // Declares a variable that will always be an array
+
+  const x = ['this', 'is', 'stuff'];
+  let y = [1,2,3,4];
+  console.log(x.concat(y));
+  y.push('Hello');
+  y.push(7);
+  console.log(x.concat(y));
+  let lastElementFromY = y.pop();
+  console.log(lastElementFromY);
+  console.log(y);
+  x.unshift('what is happening?');
+  console.log(x);
 }
 
 /**
@@ -70,14 +85,21 @@ function objects() {
       "Milton Waddams",
       "Samir Nagheenanajar",
       "Michael Bolton"
-    ]
+    ],
+    toString: function() {
+      return `${this.lastName}, ${this.firstName}, (${this.age})`;
+    }
   };
 
+  person.firstName = "Kat";
   // Log the object
-
+console.log(person);
+console.log(person.toString());
   // Log the first and last name
-
+console.log(person.firstName + ' ' + person.lastName);
+console.log(`${person.firstName} ${person.lastName} is not awesome. okay?`);
   // Log each employee
+
 }
 
 /*
@@ -87,7 +109,7 @@ Function Overloading
 
 Function Overloading is not available in Javascript. If you declare a
 function with the same name, more than one time in a script file, the
-earlier ones are overriden and the most recent one will be used.
+earlier ones are overridden and the most recent one will be used.
 */
 
 function Add(num1, num2) {

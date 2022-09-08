@@ -26,7 +26,13 @@ function printToConsole(value) {
  *
  * @param {number} firstParameter the first parameter to multiply
  * @param {number} secondParameter the second parameter to multiply
+ * @returns {number} product of two parameters
  */
+
+function multiplyTogether(firstParameter, secondParameter){
+ let result = firstParameter * secondParameter;
+ return result;
+}
 
 /**
  * This version makes sure that no parameters are ever missing. If
@@ -39,7 +45,10 @@ function printToConsole(value) {
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
 
-
+  function multiplyNoUndefined(firstParameter = 0, secondParameter = 0){
+    let result = firstParameter * secondParameter;
+    return result;
+  }
  
 /**
  * Functions can return earlier before the end of the function. This could be useful
@@ -87,10 +96,27 @@ function scopeTest() {
   }
 }
 
+
+
+
+
+/**
+ * createSentenceFromUser takes all the parameters and builds a full descriptive string
+ * from the given array using the defined separator. 
+ * 
+ * @param {string} name name of the person
+ * @param {number} age age of the person
+ * @param {string[]} [listOfQuirks] a list of quirks
+ * @param {string} [separator = ', '] the string to separate the quirks in our final string
+ * @returns {string} all the parameters building a full descriptive string
+ */
 function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
   let description = `${name} is currently ${age} years old. Their quirks are: `;
   return description + listOfQuirks.join(separator);
 }
+
+
+
 
 /**
  * Takes an array and, using the power of anonymous functions, generates
@@ -99,9 +125,20 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @param {number[]} numbersToSum numbers to add up
  * @returns {number} sum of all the numbers
  */
+// function sumAllNumbers(numbersToSum) {
+//   return numbersToSum.reduce(
+//     (total, currentValue, currentIndex) => {
+//       console.log('This is the currentIndex: ' + currentIndex);
+//       return total + currentValue;
+//     }
+//   , 10);
+// }
+
 function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+  return numbersToSum.reduce(addNumbers, 10);
 }
+
+
 
 /**
  * Takes an array and returns a new array of only numbers that are
@@ -111,4 +148,24 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
-function allDivisibleByThree(numbersToFilter) {}
+
+function allDivisibleByThree(numbersToFilter) {
+  return numbersToFilter.filter(
+    (currentNumber, currentIndex) => {
+      console.log(currentIndex);
+      return currentNumber % 3 === 0;
+    }
+  );
+}
+
+function addNumbers(sum, number){
+  return sum + number;
+}
+
+function findAllValueGreaterThan10(numbersToFilter){
+  return numbersToFilter.filter(
+    (currentNumber) => {
+      return currentNumber <= 10;
+    }
+  );
+}

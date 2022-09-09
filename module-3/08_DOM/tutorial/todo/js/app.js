@@ -19,6 +19,7 @@ function init() {
     ]
   }
 
+<<<<<<< HEAD
   function addPageTitle() {
     const heading = document.createElement('h1')
     heading.innerText = pageTitle;
@@ -41,3 +42,16 @@ init();
 addPageTitle();
 // // add the task to the DOM
 addTodos();
+=======
+
+function addPageTitle(){
+    const heading = document.createElement('h1');
+    heading.innerText = 'this is my heading';
+    todoList.appendChild(heading);
+}
+
+  // set up the page title and tasks
+init();
+
+addPageTitle();
+>>>>>>> aa916566f43d35f0698af6f86e717885caf2d5f2

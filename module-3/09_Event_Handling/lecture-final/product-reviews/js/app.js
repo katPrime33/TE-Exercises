@@ -130,4 +130,63 @@ function resetFormValues() {
 /**
  * Save the review that was added using the add review form.
  */
-function saveReview() {}
+function saveReview() {
+  //grab a reference to each input field
+  const reviewerInputField = document.getElementById('name');
+  const titleInputField = document.getElementById('title');
+  const reviewInputField = document.getElementById('review');
+  const ratingInputField = document.getElementById('rating');
+  //create a new review object and add it to the reviews array
+ const newReview = {
+  reviewer: reviewerInputField.value,
+  title: titleInputField.value,
+  review: reviewInputField.value,
+  rating: ratingInputField.value
+ } 
+
+ reviews.push(newReview)
+ showHideForm();
+ displayReview(newReview);
+}
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  //grab a reference to the p tag 
+  const descriptionElement = document.querySelector('.description');
+  //add event listener to the p tag
+  descriptionElement.addEventListener('click', (event) => {
+    toggleDescriptionEdit(event.target)
+  });
+
+
+  //grab a reference to the input tag
+  const inputField = document.getElementById('inputDesc');
+  //add an event listener to the input tag
+  inputField.addEventListener('keyup', (event) => {
+    if(event.key === 'Enter'){
+      //now that we know they hit enter we want to save their changes
+      exitDescriptionEdit(event.target, true);
+    }
+    if(event.key === 'Escape'){
+      //if here, they hit escape and do not want to save changes
+      exitDescriptionEdit(event.target, false);
+    }
+  });
+
+  //capture reference to the button
+  const btnToggleForm = document.getElementById('btnToggleForm');
+  //now add event listener
+  btnToggleForm.addEventListener('click', () => {
+    showHideForm();
+  })
+
+
+  //make an event listener for the save button
+  const btnSaveReview = document.getElementById('btnSaveReview');
+  btnSaveReview.addEventListener('click', (event) => {
+    event.preventDefault();
+    saveReview();
+  });
+
+})

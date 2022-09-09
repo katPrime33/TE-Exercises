@@ -94,6 +94,12 @@ function makeHappy(searchArray){
     return addHappy;
 }
 
+// function makeHappy(words){
+//     return words.map(addHappy);
+// }
+// function addHappy(words){
+//     return "Happy " + words;
+// }
 
 
 /*

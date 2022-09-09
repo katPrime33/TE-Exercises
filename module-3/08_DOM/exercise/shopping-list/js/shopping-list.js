@@ -1,7 +1,7 @@
 // add pageTitle
-
+const title = 'My Shopping List';
 // add groceries
-
+const groceries[10];
 /**
  * This function will get a reference to the title and set its text to the value
  * of the pageTitle variable that was set above.

@@ -129,5 +129,59 @@ function resetFormValues() {
 
 /**
  * Save the review that was added using the add review form.
+ * 
+ *   {
+    reviewer: 'Malcolm Madwell',
+    title: 'What a book!',
+    review:
+    "It certainly is a book. I mean, I can see that. Pages kept together with glue and there's writing on it, in some language. Yes indeed, it is a book!",
+    rating: 3
+  }
  */
-function saveReview() {}
+function saveReview() {
+  //grab reference to each input field
+  const reviewer = document.getElementById('name');
+  const title = document.getElementById('title');
+  const review = document.getElementById('review');
+  const rating = document.getElementById('rating');
+  //create new review object and add it to reviews []
+  const newReview = {
+    reviewer: reviewer.value,
+    title: title.value,
+    review: review.value,
+    rating: rating.value
+  }
+  reviews.push(newReview);
+  showHideForm();
+  displayReview(newReview);
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const descriptionElement = document.querySelector('.description');
+  descriptionElement.addEventListener('click', (event) => {
+    toggleDescriptionEdit(event.target)
+  });
+
+  const saveInputField = document.getElementById('inputDesc');
+  saveInputField.addEventListener('keyup', (event) => {
+    if(event.key === 'Enter'){
+      exitDescriptionEdit(event.target, true);
+    }
+    if(event.key === 'Escape'){
+      exitDescriptionEdit(event.target, false);
+    }
+  });
+
+  const btnToggleForm = document.getElementById('btnToggleForm');
+  btnToggleForm.addEventListener('click', () => {
+    showHideForm();
+});
+
+const btnSaveReview = document.getElementById('btnSaveReview');
+btnSaveReview.addEventListener('click', (event) => {
+  event.preventDefault();
+  saveReview(event.target);
+});
+
+})

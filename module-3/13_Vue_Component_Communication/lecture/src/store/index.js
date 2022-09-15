@@ -47,10 +47,17 @@ export default new Vuex.Store({
   mutations: {
     UPDATE_FILTER(state, filter){
       state.filter = filter;
+    },
+    ADD_REVIEW(state, review){
+      state.reviews.unshift(review);
+    },
+    FLIP_FAVORITED(state, reviewToChange){
+      reviewToChange.favorited = !reviewToChange.favorited;
     }
   },
   actions: {
   },
   modules: {
-  }
+  },
+  strict: true
 })

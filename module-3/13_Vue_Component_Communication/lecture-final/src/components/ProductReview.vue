@@ -1,90 +1,7 @@
 <template>
   <div class="main" v-bind:style="'background-color: ' + backgroundColor">
-    <h2>Product Reviews for {{ name }}</h2>
 
-    <p class="description">{{ description }}</p>
 
-    <div class="well-display">
-      
-
-      <div class="well" v-on:click="filterRatingValue = 1">
-        <span class="amount">{{ numberOfOneStarReviews }}</span>
-        1 Star Review{{ numberOfOneStarReviews === 1 ? "" : "s" }}
-      </div>
-
-      <div class="well" v-on:click="filterRatingValue = 2">
-        <span class="amount">{{ numberOfTwoStarReviews }}</span>
-        2 Star Review{{ numberOfTwoStarReviews === 1 ? "" : "s" }}
-      </div>
-
-      <div class="well" v-on:click="filterRatingValue = 3">
-        <span class="amount">{{ numberOfThreeStarReviews }}</span>
-        3 Star Review{{ numberOfThreeStarReviews === 1 ? "" : "s" }}
-      </div>
-
-      <div class="well" v-on:click="filterRatingValue = 4">
-        <span class="amount">{{ numberOfFourStarReviews }}</span>
-        4 Star Review{{ numberOfFourStarReviews === 1 ? "" : "s" }}
-      </div>
-
-      <div class="well" v-on:click="filterRatingValue = 5">
-        <span class="amount">{{ numberOfFiveStarReviews }}</span>
-        5 Star Review{{ numberOfFiveStarReviews === 1 ? "" : "s" }}
-      </div>
-    </div>
-
-    <div
-      class="review"
-      v-bind:class="{ favorited: review.favorited }"
-      v-for="review in filterReviews"
-      v-bind:key="review.id"
-    >
-      <h4>{{ review.reviewer }}</h4>
-      <div class="rating">
-        <img
-          src="../assets/star.png"
-          v-bind:title="review.rating + ' Star Review'"
-          class="ratingStar"
-          v-for="n in review.rating"
-          v-bind:key="n"
-        />
-      </div>
-      <h3>{{ review.title }}</h3>
-
-      <p>{{ review.review }}</p>
-
-      <p>
-        Favorite?
-        <input type="checkbox" v-model="review.favorited" />
-      </p>
-    </div>
-    <a href="#" v-on:click="showForm = !showForm">Show Form</a>
-    <form v-on:submit.prevent="addNewReview" v-if="showForm">
-      <div class="form-element">
-        <label for="reviewer">Name: </label>
-        <input id="reviewer" type="text" v-model="newReview.reviewer" />
-      </div>
-      <div class="form-element">
-        <label for="title">Title: </label>
-        <input id="title" type="text" v-model="newReview.title" />
-      </div>
-      <div class="form-element">
-        <label for="rating">Rating: </label>
-        <select id="rating" v-model.number="newReview.rating">
-          <option value="1">1 star</option>
-          <option value="2">2 stars</option>
-          <option value="3">3 stars</option>
-          <option value="4">4 stars</option>
-          <option value="5">5 stars</option>
-        </select>
-      </div>
-      <div class="form-element">
-        <label for="review">Review: </label>
-        <textarea id="review" v-model="newReview.review"></textarea>
-      </div>
-      <input type="submit" value="Save" />
-      <input type="button" value="Cancel" v-on:click="resetForm" />
-    </form>
     <div>
       <ul v-on:click="changeBackgroundColor($event)">
         <li>Red</li>
@@ -101,11 +18,10 @@ export default {
   name: "product-review",
   data() {
     return {
-      
       newReview: {},
       showForm: false,
       filterRatingValue: 0,
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       reviews: [
         {
           reviewer: "Malcolm Gladwell",
@@ -187,15 +103,15 @@ export default {
         return currentCount + (review.rating === numOfStars);
       }, 0);
     },
-    changeBackgroundColor(event){
+    changeBackgroundColor(event) {
       this.backgroundColor = event.target.innerText;
-    }
+    },
   },
 };
 </script>
 
 <style scoped>
-ul{
+ul {
   list-style: none;
 }
 

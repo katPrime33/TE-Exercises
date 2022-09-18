@@ -54,7 +54,7 @@ export default new Vuex.Store({
       {
         id: 2,
         name: "Personal Finance for Dummies",
-        description: "",
+        description: "Personal Finance for Dummies Description!!",
         reviews: []
       },
       {

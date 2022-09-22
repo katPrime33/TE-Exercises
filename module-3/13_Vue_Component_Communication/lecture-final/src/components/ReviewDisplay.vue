@@ -4,6 +4,7 @@
       v-bind:class="{ favorited: review.favorited }"
       v-bind:key="review.id"
     >
+    <h2 v-on:click="addTextToName">{{this.$store.state.name}}</h2>
       <h4>{{ review.reviewer }}</h4>
       <div class="rating">
         <img
@@ -32,6 +33,10 @@ export default {
     methods: {
         onFavoritedChange(reviewToChange){
             this.$store.commit("FLIP_FAVORITED", reviewToChange);
+        },
+        addTextToName(){
+          const newTextToAdd = ' this is the change';
+          this.$store.commit("CHANGE_NAME", newTextToAdd);
         }
     }
 }

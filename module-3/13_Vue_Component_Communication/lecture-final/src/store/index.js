@@ -53,7 +53,10 @@ export default new Vuex.Store({
     },
     FLIP_FAVORITED(state, reviewToChange){
       reviewToChange.favorited = !reviewToChange.favorited;
-    }
+    },
+    CHANGE_NAME(state, newName){
+      state.name = state.name + newName;
+    } 
   },
   actions: {
   },

@@ -26,20 +26,7 @@ public class Account {
     public BigDecimal getBalance() {
         return balance;
     }
-    
-    /**
-     * Reduces the balance of this account and increases the balance of accountTo by amount specified in amountToTransfer parameter
-     * @param accountTo
-     * @param amountToTransfer
-     */
-    public void transfer(Account accountTo, BigDecimal amountToTransfer) {
-    	if(this.balance.compareTo(amountToTransfer) >= 0) {
-    		this.balance = this.balance.subtract(amountToTransfer);
-    		accountTo.balance = accountTo.balance.add(amountToTransfer);
-    	} else {
-    		throw new InsufficientBalanceException(amountToTransfer+" exceeds the remaining balance of "+this.balance);
-    	}
-    }
+
 
     @Override
     public boolean equals(Object o) {

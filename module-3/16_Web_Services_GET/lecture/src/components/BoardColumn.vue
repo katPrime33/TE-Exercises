@@ -10,7 +10,6 @@
       >
         <div class="header">
           <h3>{{ card.title }}</h3>
-          <img v-bind:src="card.avatar" class="avatar" />
         </div>
         <div class="footer">
           <span class="date">{{ card.date }}</span>

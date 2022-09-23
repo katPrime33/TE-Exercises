@@ -25,10 +25,12 @@ export default {
   },
   methods: {
     saveTopic() {
-      topicService.add(this.topic).then(response => {
+      topicService.create(this.topic).then(response => {
         if (response.status == 201) {
-          this.$router.push(`/`);
+          this.$router.push("/");
         }
+      }).catch(error => {
+        error;
       })
     },
   },

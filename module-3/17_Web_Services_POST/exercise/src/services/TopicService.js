@@ -14,12 +14,12 @@ export default {
     return http.get(`/topics/${id}`);
   },
   
-  add(topic) {
+  create(topic) {
     return http.post(`/topics`, topic);
   },
 
   update(id, topic) {
-    return http.put(`/topics/${topic.id}`, topic);
+    return http.put(`/topics/${id}`, topic);
   },
 
   delete(id) {

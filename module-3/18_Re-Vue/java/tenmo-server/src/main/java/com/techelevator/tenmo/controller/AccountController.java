@@ -1,9 +1,7 @@
 package com.techelevator.tenmo.controller;
 
 import com.techelevator.tenmo.dao.AccountDao;
-import com.techelevator.tenmo.dao.TransferDao;
 import com.techelevator.tenmo.dao.UserDao;
-import com.techelevator.tenmo.model.Transfer;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,24 +22,12 @@ public class AccountController {
 
     private AccountDao accountDao;
     private UserDao userDao;
-    private TransferDao transferDao;
 
-    public AccountController(AccountDao accountDao, UserDao userDao, TransferDao transferDao) {
+    public AccountController(AccountDao accountDao, UserDao userDao) {
         this.accountDao = accountDao;
         this.userDao = userDao;
-        this.transferDao = transferDao;
     }
 
-    @RequestMapping( value = "/balance", method = RequestMethod.GET)
-    public BigDecimal getBalance(Principal principal) throws UsernameNotFoundException {
-        Long userId = getCurrentUserId(principal);
-        return accountDao.getAccountByUserId(userId).getBalance();
-    }
-
-    @RequestMapping(value = "/transfers", method = RequestMethod.GET)
-    public List<Transfer> getTransfers(Principal principal) {
-        return transferDao.getTransfersForUser(getCurrentUserId(principal));
-    }
 
     /**
      * Finds the user by username and returns the id

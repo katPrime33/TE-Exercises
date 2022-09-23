@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Welcome User!</h1>
+    <h1>Welcome {{ $store.state.user.username }}!</h1>
     <p>You must be authenticated to see this</p>
     
   </div>

@@ -39,13 +39,11 @@ export default {
       });
     },
     deleteTopic(id) {
-      topicService.deleteTopic(this.topic.id).then(response => {
+      topicService.deleteTopic(id).then(response => {
         if(response.status === 200){
           this.getTopics();
         }
-      }).catch(error => {
-        error.handleErrorResponse("Work In Progress!");
-      })
+      });
     }
   },
   created() {
